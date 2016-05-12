@@ -1,0 +1,65 @@
+a{
+    text-decoration: none;/*去掉链接的下划线*/
+}
+#framel{
+    position:relative;
+    float:left;
+    width:400px;
+    height:300px;
+    margin:30px 15px;
+    border:0;
+    padding:5px;
+}
+#framel #l1{
+    position:relative;
+    float:left;
+    width:360px;
+    height:40px;
+    margin:6px 15px;
+    border:0;
+    padding:2px;
+    text-align: center;
+    font-size:23px;
+
+}
+#framel #l2{
+    position:relative;
+    float:left;
+    width:360px;
+    height:40px;
+    margin:6px 15px;
+    border:0;
+    padding:2px;
+}
+#framel #l3{
+    position:relative;
+    float:left;
+    width:360px;
+    height:40px;
+    margin:6px 15px;
+    border:0;
+    padding:2px;
+}
+
+#framel #l4{
+    position:relative;
+    float:left;
+    width:360px;
+    height:10px;
+    margin:12px 15px 5px 15px;
+    border:0;
+    padding:2px;
+    text-align: right;
+    font-size: small;
+}
+#framel #l5{
+    position:relative;
+    float:left;
+    width:360px;
+    height:40px;
+    margin:0px 15px;
+    border:0;
+    padding:2px;
+    text-align: center;
+
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>reg</title>
+    <link rel="stylesheet" href="regg.css" type="text/css">
+    <script charset="utf-8" src="reg.js" type="text/javascript"></script>
+    <style>
+        form{
+            font-size:20px;
+            font-weight:600;
+        }
+        span{
+            font-size:13px;
+            color:gray;
+            font-weight:300;
+        }
+        .stats1{
+            color:#aaa;
+        }
+        .stats2{
+            color:orange;
+        }
+        .stats3{
+            color:red;
+        }
+        .stats4{
+            color:green;
+        }
+    </style>
+</head>
+<body>
+<form name="frm" id="frm1" action="http://www.taobao.com" method="post" onsubmit="return regs('click')">
+    username:<input type="text" name="username"  value="" placeholder="username">
+    <span class="stats1">请输入用户名</span><br>
+    password:<input type="password" name="password"  value="" placeholder="password">
+    <span class="stats1">请输入密码</span><br>
+    repass:&nbsp;<input type="password" name="repass" value="" placeholder="repassword">
+    <span class="stats1">再次确认密码</span><br>
+    email:&nbsp;<input type="email" name="email" value="" placeholder="email">
+    <span class="stats1">请输入邮箱</span><br>
+    <!--captcha:<input type="text" name="captcha" value="" placeholder="captcha">-->
+    <!--<span class="stats1">请输入验证码</span><br>-->
+    others:<input type="text" name="others" value="" placeholder="others">
+    <span class="stats1">请输入其他</span><br>
+    <input type="submit"    value="Login">
+
+</form>
+</body>
+</html>

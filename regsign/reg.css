@@ -1,0 +1,109 @@
+a{
+    text-decoration: none;/*去掉链接的下划线*/
+}
+#framer{
+    position:relative;
+    float:left;
+    width:400px;
+    height:300px;
+    margin:30px 15px;
+    border:0;
+    padding:5px;
+}
+#framer #r1{
+    position:relative;
+    float:left;
+    width:360px;
+    height:30px;
+    margin:5px 15px;
+    border:0;
+    padding:2px;
+    text-align: center;
+    font-size:23px;
+
+}
+#framer #r2{
+    position:relative;
+    float:left;
+    width:360px;
+    height:35px;
+    margin:5px 15px;
+    border:0;
+    padding:2px;
+}
+#framer #r3{
+    position:relative;
+    float:left;
+    width:300px;
+    height:35px;
+    margin:5px 15px;
+    border:0;
+    padding:2px;
+}
+#framer #r4{
+    position: relative;
+    float: left;
+    width: 45px;
+    height: 35px;
+    margin: 5px 0px;
+    border: 0;
+    padding: 2px;
+}
+
+#framer #r4 #r41{
+    position:relative;
+    float:left;
+    width:45px;
+    height:38px;
+
+}
+#framer #r5{
+    position:relative;
+    float:left;
+    width:360px;
+    height:35px;
+    margin:5px 15px;
+    border:0;
+    padding:2px;
+}
+#framer #r6{
+    position:relative;
+    float:left;
+    width:360px;
+    height:35px;
+    margin:5px 15px;
+    border:0;
+    padding:2px;
+}
+#framer #r7{
+    position:relative;
+    float:left;
+    width:270px;
+    height:10px;
+    margin:10px 15px;
+    border:0;
+    padding:2px;
+    font-size: small;
+}
+#framer #r8{
+    position:relative;
+    float:left;
+    width:65px;
+    height:10px;
+    margin:10px 15px 0px 2px;
+    border:0;
+    padding:2px;
+    text-align: right;
+    font-size: small;
+}
+#framer #r9{
+    position:relative;
+    float:left;
+    width:360px;
+    height:35px;
+    margin:0px 15px;
+    border:0;
+    padding:2px;
+    text-align: center;
+
+}
