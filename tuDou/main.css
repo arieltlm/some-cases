@@ -1,0 +1,102 @@
+*{
+	margin:0;
+	padding:0;
+	list-style: none;
+	text-decoration: none;
+	color:#000;
+}
+.wrapper{
+	width:650px;
+	margin:30px auto;
+}
+.wrapper .tiao{
+	position: relative;
+	top:-15px;
+	display: inline-block;;
+	width:108px;
+	height:3px;
+	background-color: #f97374
+}
+/************header***************/
+header h1{
+	display: inline-block;
+}
+header aside{
+	float: right;
+}
+header aside li{
+	display: inline-block;
+}
+header aside li:after{
+	content: "|";
+	display: inline-block;
+	padding: 5px;
+}
+/*一定要记住这句的顺序*/
+header aside li:last-child:after{
+	display:none;
+}
+
+/*****************content**************/
+.wrapper .content{
+	font-size: 13px;
+	line-height: 20px; 
+}
+.content li{
+	position: relative;
+	display: inline-block;
+	width:130px;
+	margin: 10px 12px;
+}
+.content img{
+	width:130px;
+	height:80px;
+}
+.content .qin{
+	position: absolute;
+	top:60px;
+	right:0;
+	display: inline-block;
+	width:32px;
+	height:20px;
+	padding-left: 10px;
+	-webkit-border-radius: 8px 0 0 8px;
+	-moz-border-radius: 8px 0 0 8px;
+	border-radius: 8px 0 0 8px;
+}
+.content .chao{
+	background-color: rgba(115,160,195,0.9);
+}
+.content .gao{
+	background-color: rgba(242,109,99,0.9);
+}
+.content .author,.time,.pin{
+	margin:5px;
+	padding-top: -5px;
+	cursor: pointer;
+}
+.content .author:before,.time:before,.pin:before{
+	content: " ";
+	margin-top: 5px;
+	margin-right: 5px;
+	display: inline-block;
+	width:14px;
+	height:13px;
+	overflow: hidden;
+	background: url('img/logo.png') no-repeat;
+}
+.content .author:before{
+	background-position: -10px -5px ;
+}
+.content .time:before{
+	background-position: -35px -7px;
+}
+.content .pin:before{
+	background-position:  -61px -7px ;
+}
+
+.content .author{
+	display: block;
+}
+
+

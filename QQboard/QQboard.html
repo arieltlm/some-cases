@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QQ面板</title> 
+    <link rel="stylesheet" type="text/css" href="QQboard.css">
+    <script type="text/javascript" src="QQdragAndStatechange.js"></script>
+</head>
+<body>
+   <div id="panel">
+      <div class="loginPanel">
+          <span id="close">×</span>      
+      </div>
+
+      <div class="inputsPanel">
+        <span>帐号：</span><input type="text" name="accounts" placeholder="QQ号码或Email帐号"><br>
+        <span>密码：</span><input type="password" name="password" >
+      </div>
+
+      <div class="downPanel">
+          <input type="button" name="button" value="登录">
+          <div id="origin">
+            <div class="states online" ></div><div class="stateText">在线</div>
+          </div>
+          <div class="states downlogo"></div>
+          <ul id="displaystate">
+              <li><div class="states online"></div><div class="stateText">在线</div></li>
+              <li><div class="states away"></div><div class="stateText">离开</div></li>
+              <li><div class="states busy"></div><div class="stateText">忙碌</div></li>
+              <li><div class="states hidden"></div><div class="stateText">隐身</div></li>
+              <li><div class="states callme"></div><div class="stateText">Q我</div></li>
+              <li><div class="states leave"></div><div class="stateText">离线</div></li>
+              <li><div class="states silent"></div><div class="stateText">勿扰</div></li>
+          </ul>
+      </div>
+   </div>
+</body>
+</html>

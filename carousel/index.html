@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>undact</title>
+	<meta name="keywords" content="社团、大学生社团、高校、学生社团、高校社团、学生团体、社团活动、社团信息">
+	<meta name="description" content="undact是来自于undergraduate activity团队打造、服务于全国高校学生团体的互联网产品，致力于打造汇聚全国学生团体的、完善可靠的社团管理平台。">
+	<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+	<style>
+		.carousel{
+			position: relative;
+			width: 450px;
+			height: 300px;
+			overflow: hidden;
+		}
+		.carousel ul{
+			position: absolute;
+			left:0;
+			list-style: none;
+			width: 2700px;
+			height: 250px;
+			margin: 0;
+			padding: 0;
+		}
+		.carousel li{
+			position: relative;
+			display: inline-block;
+			float: left;
+			margin: 0;
+			padding: 0;
+		}
+		.carousel li img{
+			width: 450px;
+			height: 250px;
+		}
+		.carousel li span{
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			font:18px/45px "微软雅黑";
+			color: #fff;
+			display: inline-block;
+			width: 450px;
+			height: 45px;
+			background-color: rgba(0,0,0,0.8);
+			padding-left: 30px;
+		}
+		.carousel .quan{
+			position: relative;
+			top: 260px;
+			width: 100%;
+			height: 40px;
+			text-align: center;
+		}
+		.carousel .quan span{
+			display: inline-block;
+			width: 20px;
+			height: 20px;
+			background-color: #E3E3E4;
+			-webkit-border-radius: 50%;
+			-moz-border-radius: 50%;
+			border-radius: 50%;
+			cursor: pointer;
+		}
+		.carousel .quan span:first-child{
+			background-color: orange;
+		}
+	</style>
+</head>
+<body>
+	<div class="carousel">
+		<ul>
+			<li><a href="#"><img src="img/eg1.jpg" alt=""><span>第一个社团活动</span></a></li>
+			<li><a href="#"><img src="img/eg2.jpg" alt=""><span>第二个社团活动</span></a></li>
+			<li><a href="#"><img src="img/eg3.jpg" alt=""><span>第三个社团活动</span></a></li>
+			<li><a href="#"><img src="img/eg4.jpg" alt=""><span>第四个社团活动</span></a></li>
+			<li><a href="#"><img src="img/eg5.jpg" alt=""><span>第五个社团活动</span></a></li>
+			<li><a href="#"><img src="img/eg1.jpg" alt=""><span>第一个社团活动</span></a></li>
+		</ul>
+		<div class="quan">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	</div>
+	<script>
+		$(document).ready(function(){
+			//图片个数
+			var num=$(".carousel li").length;
+			var i=1,
+				n,
+				ca,
+				ca1,
+				speed=1500;
+
+				//轮播
+				function carousel(){
+					//左移
+					var leftValue=-450*i;
+					$(".carousel ul").animate({
+						left: leftValue+'px',},speed
+				  	);
+					
+					//图片与下面的span对应，改变背景色
+					for(var m=0;m<num-1;m++){
+						if(m==i){
+							$(".carousel .quan span").eq(m).css("background-color","orange");
+						}else{
+							$(".carousel .quan span").eq(m).css("background-color","#E3E3E4");
+						}
+					}
+					//最后一个li和第一个span相对应
+					if(i==num-1){
+						$(".carousel .quan span").eq(0).css("background-color","orange");
+					}
+					
+					i++;
+
+					//从最后一个向第一个无缝切换（变换速度）
+					 if(i==num){
+					 	i=0;
+					 	speed=0;
+					 }else speed=1500;
+				}
+
+			//一进入页面的轮播
+			ca1=setInterval(function(){
+				carousel();
+			},3000);
+			
+			//鼠标悬停
+			$(".carousel li").hover(function(){
+				n=$(this).index();//悬停的第n个图片
+				clearInterval(ca1);//停止最开始的轮播
+				clearInterval(ca);},//鼠标悬停轮播停止
+				//鼠标离开时轮播开始
+				function(){
+					i=n;
+					
+					ca=setInterval(function(){
+						carousel();
+					},3000);
+
+		
+				}
+			);
+			//底部小圆圈上的悬停上面展示对应的图片
+			$(".carousel .quan span").hover(function(){
+							i=$(this).index();
+							carousel();
+							clearInterval(ca);
+							clearInterval(ca1);
+					},
+					function(){
+						ca=setInterval(function(){
+							carousel();
+						},3000);
+				})
+
+		});
+		
+
+
+
+	</script>
+</body>
+	
+</html>

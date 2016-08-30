@@ -1,0 +1,169 @@
+<!-- 此次布局总结：
+1、先写出rest的css样式，多使用挂式组合，少用继承。so——我建了一个cssRest.css，然后在其中写出common的样式，直接在class后面挂，不用重复写此代码。
+2、a的颜色，必须通过a{color:red;}来设置，设置其上层元素的css样式不行
+3、li后面的分隔符以及像是hr元素实现的线都可以使用，块状元素的border-right或者border-bottom:1px solid #ccc;来实现。实际上我是直接用hr元素来实现的，只是在html中增加了代码。或者使用伪元素：after和content:"|",此时就需要设置margin-left了，如果刚巧使用flex布局，其数值就不是很好的把握准确了。
+4、在文字前面出现的小图标，我使用的伪元素：before和content，然后在其后使用background。如果有上下对不齐的现象，我们可以使用position：relative；结合top来调整。还有就是可以不使用伪元素，而是直接给li背景图，而注意padding-left设出图片的宽度。
+5、遇到这种大块大块的布局的话，首先布局好大块，再来小细节，一定要注意浮动的问题，wrapper中的所有子块都浮动后，都处于浮动层了，下一个内容就上去了。所以注意设置高度和清除浮动。最好一点就是使用flex布局，这个布局还是好用，把稳。
+6、注意盒子的宽度不是设置的width还要加上padding。所以设置时注意600=570+15*2;width=570px;padding=15px;
+7、同时要实现左浮和右浮时，最好在外面包裹一个div。
+8、.item .item_option:before,
+.item .item_option:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.item .item_option:after {
+  clear: both;
+}学习老师编写的代码，这句——————————似乎实现的是上下居中。
+9、css中我一直在考虑写一个样式时，前面应该兼顾上几个上级class，看老师写的应该两级就够了。
+10、相对比老师写的自己的语义化还是差一些，比如在微博正文处，老师使用的是dl、dt、dd这样正好和微博的样式符合，使用的挺好。还有加重的数字，使用strong包裹起来。
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>sina</title>
+	<meta name="author" content="yizhimei">
+	<meta name="creationdate" content="2016-07-16">
+	<link rel="stylesheet" href="sinaCss.css">
+</head>
+<body>
+	<header >
+		<h1>微博</h1>
+		<form action="#">
+			<input type="text" placeholder="搜索">
+		</form>
+		<ul class="show">
+			<li><a href="#">首页</a></li>
+			<li><a href="#">首页</a></li>
+			<li><a href="#">首页</a></li>
+			<li><a href="#">首页</a></li>
+		</ul>
+		<ul class="set"> 
+			<li><a href="#"><img src="img/sinalogo_11.png" alt=""></a></li>
+			<li><a href=""><img src="img/sinalogo_13.png" alt=""></a></li>
+		</ul>
+	</header>
+	<div class="outer">
+		<div class="wrapper">
+			<nav class="f14">
+				<ul>
+					<li><a href="#">首页</a></li>
+					<li><a href="#">里约奥运</a></li>
+					<li><a href="#">中国健儿</a></li>
+					<hr>
+					<li><a href="#">运动</a></li>
+					<li><a href="#">好友</a></li>
+				</ul>
+			</nav>
+			<div class="content f12 conw">
+				<div class="new_thing backgW conw">
+					<img class="fl" src="img/newimg.png" alt="">
+					<div class="fr  col_orange">
+						<a  href="#">恭喜杜丽易思玲摘得女子十米气步枪银铜牌，精彩瞬间(视频)</a>
+					<a  href="#">热门微博</a>
+					</div>
+					
+					<textarea  name="inputThings" id="inputThings" cols="" rows=""></textarea>
+					<ul class="expression">
+						<li>表情</li>
+						<li>表情</li>
+						<li>表情</li>
+						<li>表情</li>
+					</ul>
+					<select name="state" id="state">
+						<option value="公开">公开</option>
+						<option value="私密">私密</option>
+						<option value="好友可见">好友可见</option>
+					</select>
+					<form action="#" id="submits">
+						<input type="submit" name="" value="发布">
+					</form>
+				</div>
+				<div class="nav_bar backgW conw">
+					<ul>
+						<li><a href="#">全部</a></li>
+						<li><a href="#">原创</a></li>
+						<li><a href="#">图片</a></li>
+						<li><a href="#">视频</a></li>
+						<li><a href="#">音乐</a></li>
+						<li><a href="#">文章</a></li>
+					</ul>
+					<form action="#">
+						<input type="text" id="search" placeholder="搜索我关注人的微博"><label for="search"></label>
+					</form>
+				</div>
+				<div class="main_content backgW conw">
+					<div class="pic">
+						<img src="img/1.jpg" alt="">
+					</div>
+					<div class="main_state">
+						<a href="#" class="hero">一枝梅</a><span class="down_drap"></span>
+						<p><a href="#" id="one">#晚安，北京#</a>北方有佳人，绝世而独立 ，一顾倾人城，再顾倾人国。无数次的回望，只为那一瞬间的多彩，有你，我时尚，有你，我的世界倍加多姿多彩与众不同。</p>
+					</div>
+					<hr>
+					
+					<ul class="set_state">
+						<li>收藏</li>
+						<li>转发</li>
+						<li>评论</li>
+						<li>点赞</li>
+					</ul>
+				</div>
+				<div class="main_content backgW conw">
+					<div class="pic">
+						<img src="img/1.jpg" alt="">
+					</div>
+					<div class="main_state">
+						<a href="#" class="hero">一枝梅</a><span class="down_drap"></span>
+						<p><a href="#" id="one">#晚安，北京#</a>北方有佳人，绝世而独立 ，一顾倾人城，再顾倾人国。无数次的回望，只为那一瞬间的多彩，有你，我时尚，有你，我的世界倍加多姿多彩与众不同。</p>
+						<img src="img/1.jpg" alt="">
+					</div>
+					<hr>
+					
+					<ul class="set_state">
+						<li>收藏</li>
+						<li>转发</li>
+						<li>评论</li>
+						<li>点赞</li>
+					</ul>
+
+				</div>
+			</div>
+			<aside>
+				<div class="aside_up backgW">
+					<div class="col_orange"></div>
+					<div class="out"><div class="in"><img src="img/1.jpg" alt=""></div></div>
+					<h1>一枝梅</h1>
+					<ul class="num f12">
+						<li><a href="#">340</a><a href="#">关注</a></li>
+						<li><a href="#">526</a><a href="#">粉丝</a></li>
+						<li><a href="#">2760</a><a href="#">微博</a></li>
+					</ul>
+				</div>
+				<div class="aside_down backgW ">
+					<div class="hot_title">
+						<h1 >热门话题</h1>
+						<span class="change">换一换</span>
+					</div>
+					
+					
+					<ul class="hot_topic clearfix">
+						<li><a href="#" class="first_a">#里约奥运会vdsbgdegh</a><a href="#" class="nums">927万</a></li>
+						<li><a href="#" class="first_a">#里约奥运会ngggnmm</a><a href="#" class="nums">927万</a></li>
+						<li><a href="#" class="first_a">#里约奥运会ngggnmm</a><a href="#" class="nums">927万</a></li>
+						<li><a href="#" class="first_a">#里约奥运会ngggnmm</a><a href="#" class="nums">927万</a></li>
+						<li><a href="#" class="first_a">#里约奥运会ngggnmm</a><a href="#" class="nums">927万</a></li>
+						<li><a href="#" class="first_a">#里约奥运会ngggnmm</a><a href="#" class="nums">927万</a></li>
+						<li><a href="#" class="first_a">#里约奥运会ngggnmm</a><a href="#" class="nums">927万</a></li><li><a href="#" class="first_a">#里约奥运会ngggnmm</a><a href="#" class="nums">927万</a></li><li><a href="#" class="first_a">#里约奥运会ngggnmm</a><a href="#" class="nums">927万</a></li>
+						
+					</ul>
+					<hr>
+					<p>查看更多</p>
+				</div>
+			</aside>
+		</div>
+	</div>
+	
+</body>
+</html>

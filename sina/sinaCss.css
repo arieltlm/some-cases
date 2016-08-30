@@ -1,0 +1,324 @@
+@import url(sinaCssRest.css);
+
+/*************header**********************/
+header{
+	width:75%;
+	height:45px;
+	margin:0 auto;
+}
+header h1{
+	float: left;
+	line-height: 45px;
+}
+header h1:before{
+	content:"";
+	width: 35px;
+	height:27px;
+	display: inline-block;
+	background: url(img/sinalogo.jpg)  -11px -6px no-repeat;
+}
+header form{
+	margin-left: 40px;
+	margin-top: 10px;
+	float:left;
+}
+header input{
+	width:500px;
+	height: 22px;
+}
+header .show li,.set li{
+	float: left;
+	margin: 10px 15px;
+	display: inline-block;
+}
+header .show li:before{
+	content: "";
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+	background: url(img/sinalogo.jpg) no-repeat;
+}
+header .show li:nth-of-type(1):before{
+	margin-left:90px;
+	background-position: -17px -72px;
+}
+header .show li:nth-of-type(2):before{
+	background-position: -17px -101px;
+}
+header .show li:nth-of-type(3):before{
+	background-position: -17px -133px;
+}
+header .show li:nth-of-type(4):before{
+	background-position: -17px -163px;
+}
+header .show:after{
+	content: "|";
+	margin-top: 15px;
+	float: left;
+	color: gray;
+	height: 1.5em;
+}
+header .set li{
+	margin: 12px 18px;
+	display: inline-block;
+}
+
+/************wrapper***************/
+.outer{
+	background-color: #99d6f3;
+}
+.wrapper{
+	width:1000px;
+	background-color: rgba(127,195,226,0.6);
+	margin:0 auto;
+	padding:15px;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+/*********nav*********/
+.wrapper nav{
+	width:150px;
+}
+.wrapper nav li{
+	margin: 15px 20px ;
+	
+}
+.wrapper nav a{
+	color:white;
+}
+
+/**********content**********/
+.col_orange a{
+	color: orange;
+}
+#inputThings{
+	width:570px;
+	height: 60px;
+}
+.wrapper  .new_thing .expression {
+	float: left;
+}
+.wrapper  .new_thing .expression li{
+	display: inline-block;
+	margin-right: 5px;
+}
+.wrapper  .new_thing .expression li:before{
+	content:"";
+	display: inline-block;
+	width:25px;
+	height:20px;
+	/* 这个问题终于解决了，左背景和右文字在一条线上，通过下面的两句代码 */
+	position:relative;
+	top:5px;
+
+	margin-right: 3px;
+	background: url(img/simle.png) no-repeat;
+}
+#state{
+	float: left;
+	margin-left: 180px;
+	margin-top: 5px;
+}
+#submits input{
+	margin-left: 6px;
+	margin-top: 5px;
+	width: 60px;
+	height: 20px;
+	background-color: orange;
+	border-color: orange;
+	color: #fff;
+}
+/***********nav_bar*******************/
+.nav_bar{
+	height: 15px;
+}
+.nav_bar li{
+	display: inline-block;
+	margin: 0 10px;
+	float: left;
+}
+.nav_bar form{
+	position: relative;
+}
+.nav_bar input{
+	float: right;
+	height: 22px;
+}
+.nav_bar label{
+	background: url(img/sinalogo.jpg) -16px -43px no-repeat;
+	display: inline-block;
+	/* 相对form定位 */
+    position: absolute;
+    top: 2px;
+	right: 1px;
+	width: 24px;
+	height: 20px;
+}
+/**************main_content**************** */
+.main_content .pic{
+	width: 50px;
+	height: 50px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	overflow: hidden;
+	float: left;
+}
+.main_content .pic img{
+	width: 50px;
+	height: 50px;
+}
+.main_content .hero{
+	font-size: 20px;
+	font-weight: 700;
+}
+.main_content .main_state{
+	line-height: 1.8em;
+}
+#one{
+	color: #32a2d5;
+}
+.main_content .down_drap{
+	background: url(img/down.png);
+	display: inline-block;
+	width: 17px;
+	height: 16px;
+	float: right;
+}
+.main_content .main_state img{
+	margin-left: 50px;
+}
+.main_content .set_state{
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+.main_content .set_state li:after{
+	content: "|";
+	margin-left: 60px;
+	color: gray;
+}
+.main_content .set_state li:last-child:after{
+	display: none;
+}
+/*************aside*******************/
+.wrapper aside{
+	width:230px;
+	margin-top: 15px;
+	margin-left: 30px;
+	height: 600px;
+}
+/************aside_up*************/
+.wrapper .aside_up{
+	height: 165px;
+	position: relative;
+}
+.wrapper .aside_up .col_orange{
+	height: 70px;
+	background-color: orange;
+}
+.aside_up .out{
+	position: absolute;
+	top: 40px;
+	left: 85px;
+	width: 60px;
+	height: 60px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	overflow: hidden;
+	background-color: gray;
+}
+.aside_up .in{
+	width: 50px;
+	height: 50px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	overflow: hidden;
+	position: absolute;
+	top: 5px;
+	left: 5px;
+}
+.aside_up .in img{
+	width: 50px;
+	height: 50px;
+}
+.aside_up h1{
+	margin-top: 33px;
+	text-align: center;
+	font-weight: 700;
+}
+.aside_up .num{
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	margin-left: 10px;
+}
+.aside_up .num li{
+	width: 2.5em;
+	padding-right: 20px;
+	border-right: 1px solid gray;
+
+}
+.aside_up .num li:last-child{
+	border: none;
+
+}
+.aside_up .num li{
+	width: 2em;
+}
+
+.aside_up .num li a:first-child{
+	font: normal 600 16px/1.5em "微软雅黑";
+}
+
+/**********aside_down***************/
+.aside_down{
+	padding: 15px;
+	font-size: 14px;
+	line-height: 2em;
+}
+.hot_title{
+	border-bottom: 1px solid #ccc;
+	height: 38px;
+}
+.aside_down h1{
+	font: normal 600 14px/1.5em "微软雅黑";
+	float: left;
+}
+.aside_down .change{
+	float: right;
+	display: inline-block;
+}
+.aside_down .hot_topic li{
+	float: left;
+	display: block;
+	width: 200px;
+
+}
+.hot_topic li .first_a{
+	float: left;
+	display: inline;
+	width: 100px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.aside_down .hot_topic li .nums{
+	float: right;
+}
+
+.aside_down p{
+	text-align: center;
+	color: gray;
+}
+
+
+
+
+
+
+

@@ -1,0 +1,78 @@
+<!-- 
+1、三个小图标是我在所给的图中通过ps切图得到，然后使用ps拖入一个新的无背景的图中，做成css sprite所用的样式。然后还要学习，在使用某个图标时，想要使用background-position：x y;此时这两个值可以在ps中获得，使用切图工具切出此图标点击右键可以得到图标的x'和y'值，同时宽高也可以得到。那么background-position：-x' -y';加入这三个图标也是使用的伪元素属性：before实现的。
+2、右上角的导航中间的|是用伪元素属性：after实现的，此时需要注意一点，在清除最后一个|时，其顺序应该为li：last-child：after,切不可写反了。
+3、还需要总结一点，在写某个元素其位置时，首先找出相对定位的元素，在其上加上position：relative；然后在我们需要定位的这个元素css中写position:absolute,加上top和left值即可，也灵活使用right和bottom。
+4、注意一点border-radius:左上角  右上角  右下角 左下角。注意顺序。
+5、有一点疑问，或者不确定，在这个布局中有很多个小块，比如作者，时间，高清等，我都使用的是span，不知道是否最合适，或者应该使用div呢
+ -->
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>TuDou</title>
+		<meta name="author" content="yizhimei">
+		<meta name="creationdate" content="2016-07-22">
+		<link rel="stylesheet" href="main.css">
+	</head>
+	<body>
+		<div class="wrapper">
+			<hr>
+			<span class="tiao"></span>
+			<header>
+				<h1>原创</h1>
+				<aside>
+					<ul class="navs">
+						<li><a href="#">上传作品</a></li>
+						<li><a href="#">5事拍客</a></li>
+						<li><a href="#">彩虹计划</a></li>
+						<li><a href="#">更多</a></li>
+					</ul>
+				</aside>
+			</header>
+			<div class="content">
+				<ul>
+					<li>
+						<a href="#"><img src="img/eg4.jpg" alt=""><span class="qin chao">超清</span></a>
+						<a href="#">大学洗去了我们的青涩</a>
+						<span class="author">猪猪</span><span class="time">201,591</span><span class="pin">20</span>
+					</li>
+					<li>
+						<a href="#"><img src="img/eg4.jpg" alt=""><span class="qin gao">高清</span></a>
+						<a href="#">大学洗去了我们的青涩</a>
+						<span class="author">猪猪</span><span class="time">201,591</span><span class="pin">20</span>
+					</li>
+					<li>
+						<a href="#"><img src="img/eg4.jpg" alt=""><span class="qin chao">超清</span></a>
+						<a href="#">大学洗去了我们的青涩</a>
+						<span class="author">猪猪</span><span class="time">201,591</span><span class="pin">20</span>
+					</li>
+					<li>
+						<a href="#"><img src="img/eg4.jpg" alt=""><span class="qin gao">高清</span></a>
+						<a href="#">大学洗去了我们的青涩</a>
+						<span class="author">猪猪</span><span class="time">201,591</span><span class="pin">20</span>
+					</li>
+					<li>
+						<a href="#"><img src="img/eg4.jpg" alt=""><span class="qin gao">高清</span></a>
+						<a href="#">大学洗去了我们的青涩</a>
+						<span class="author">猪猪</span><span class="time">201,591</span><span class="pin">20</span>
+					</li>
+					<li>
+						<a href="#"><img src="img/eg4.jpg" alt=""><span class="qin chao">超清</span></a>
+						<a href="#">大学洗去了我们的青涩</a>
+						<span class="author">猪猪</span><span class="time">201,591</span><span class="pin">20</span>
+					</li>
+					<li>
+						<a href="#"><img src="img/eg4.jpg" alt=""><span class="qin chao">超清</span></a>
+						<a href="#">大学洗去了我们的青涩</a>
+						<span class="author">猪猪</span><span class="time">201,591</span><span class="pin">20</span>
+					</li>
+					<li>
+						<a href="#"><img src="img/eg4.jpg" alt=""><span class="qin gao">高清</span></a>
+						<a href="#">大学洗去了我们的青涩</a>
+						<span class="author">猪猪</span><span class="time">201,591</span><span class="pin">20</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	</html>	

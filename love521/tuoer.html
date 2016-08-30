@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>大哥大</title>
+	<meta charset="utf-8">
+	<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+
+	<style type="text/css">
+		.body1{
+			background:  url(img/flower.jpg) no-repeat center 0px,radial-gradient(circle  at 800px 600px,pink,lightblue,yellow) ;
+			width:100%;
+			height: 100%;
+			overflow: hidden;
+		}
+		
+		#lefttuoer img ,#rightme img{
+			width:280px;
+			height:400px;
+
+		  display: inline-block;
+		  -webkit-transition: all 0.1s ease-in;
+		  -moz-transition: all 0.1s ease-in;
+		  -o-transition: all 0.1s ease-in;
+		  -ms-transition: all 0.1s ease-in;
+		  transition: all 0.1s ease-in;
+		
+		}
+		#lefttuoer img{
+			border:30px solid;
+			border-image:url(img/pig.jpg) 30 repeat;
+			position:absolute;
+			bottom:50px;
+			left:-400px;
+			box-shadow: -40px 40px 5px 5px  gray;
+
+		}
+		#lefttuoer img:hover{
+		  -webkit-transform:rotate(-30deg);
+		  -moz-transform:rotate(-30deg);
+		  -o-transform:rotate(-30deg);
+		  -ms-transform:rotate(-30deg);
+		  transform:rotate(-30deg);
+		
+		}
+		#rightme img{
+			border:30px solid;
+			border-image:url(img/dog.jpg) 30 repeat;
+			position:absolute;
+			bottom:50px;
+			right:-400px;
+			box-shadow: 40px 40px 5px 5px gray;
+		}
+		#rightme img:hover{
+		  -webkit-transform:rotate(20deg);
+		  -moz-transform:rotate(20deg);
+		  -o-transform:rotate(20deg);
+		  -ms-transform:rotate(20deg);
+		  transform:rotate(20deg);
+			
+		}
+		/*%%%%%%%%%%*/
+		.we{
+			display:flex;
+			align-content: center;
+			justify-content: center;
+		}
+		.we img{
+			width:520px;
+			height: 0px;
+			
+		}
+		/*%%%%%%%%%*/
+		.body2{
+			background: url(img/xunyicao.jpg) no-repeat;
+			background-size: cover;
+			overflow: hidden;
+		}
+		/*%%%%%%%%%%%%*/
+		
+		#we3 .topleft{
+			position: absolute;
+			opacity: 0;
+			top:0;
+			left:0;
+			box-shadow: 20px 20px 5px 5px  gray;
+		
+		}
+		#we3 .topright{
+			position: absolute;
+			opacity: 0;
+			top:0;
+			right:0;
+			box-shadow: -20px 20px 5px 5px  gray;
+		
+		}
+		#we3 .bottomleft{
+			position: absolute;
+			opacity: 0;
+			bottom:0;
+			left:0;
+			box-shadow: 20px -20px 5px 5px  gray;
+		}
+		#we3 .bottomright{
+			position: absolute;
+			opacity: 0;
+			bottom:0;
+			right:0;
+			box-shadow: -20px -20px 5px 5px  gray;
+		}
+		#we3 img:hover{
+		  -webkit-transform:rotate(-30deg);
+		  -moz-transform:rotate(-30deg);
+		  -o-transform:rotate(-30deg);
+		  -ms-transform:rotate(-30deg);
+		  transform:rotate(-30deg);
+		
+		}
+		#we3 img{
+			border-radius: 10px;
+		}
+		/*%%%%%%%%%%%%%*/
+		#words{
+			height:700px;
+		}
+		h1{
+			font-size:148px;
+			font-weight: 800;
+			line-height: 600px;
+			text-align: center;
+			display: none;
+		}
+		
+	</style>
+</head>
+
+<body class="body1">
+	<embed src="timeMove.mp3" loop="-1" hidden=true>
+	<div id="lefttuoer" class="imgs">
+		<img src="img/tuoer2.jpg" alt="tuoer" title="">
+	</div>
+	<div id="rightme" class="imgs">
+		<img src="img/me3.jpg" alt="mei" title="">
+	</div>
+	<div class="we">
+			<img id="we2" src="img/we2.jpg" alt="we">
+			<img id="we" src="img/two2.jpg" alt="we">
+			<img id="we1" src="img/we1.jpg" alt="we">
+	</div>
+	
+	<div id="we3">
+		<img class="topleft" src="img/we3.jpg" alt="we" width="300px" height="300px" >
+		<img class="topright" src="img/two.jpg"  alt="we" width="300px" height="300px">
+		<img class="bottomleft" src="img/bikes.jpg"  alt="bikes" width="300px" height="300px">
+		<img class="bottomright" src="img/11.jpg"  alt="dog" width="300px" height="300px">
+	</div>
+	
+	<div id='words'>
+		<h1>执子之手，与子偕老</h1>
+	</div>
+
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			// 图片左入和右入
+			$("#lefttuoer img").animate({
+				left:'+=450px'},1000
+			);
+			$("#rightme img").animate({
+				left:'-=450px'},1000
+			);
+
+
+			$("div.imgs img").hover(function(){
+				// 左右图片出
+				$("div.imgs img").animate({
+					left:'600px',
+					top:'-1550px',
+					opacity:'0.5'
+				},1000,function(){
+					   imgUpDown('#we2',3500,4500);
+					   imgUpDown('#we',3300,6400);
+					   $("#we1").animate({
+							height:'800px',
+							opacity:'0.5'
+						},4500).slideUp(7600,function(){
+							floatn('.topleft','1280','480');
+							floatn('.topright','20','480');
+							floatn('.bottomleft','1280','20');
+							floatn('.bottomright','20','20');
+							// 字出现
+							$("h1").fadeIn(5000);
+						});
+				});
+				// 换背景
+				$("div.we img").hover(function(){
+								$("body").removeClass("body1");
+								$("body").addClass("body2");
+									
+							});
+			});
+
+			// 图片下滑函数
+			function imgUpDown(id,speed1,speed2){
+				$(id).animate({
+					height:'800px',
+					opacity:'0.3'
+				},speed1).slideUp(speed2);
+			}
+
+			// 图片浮动函数
+			function floatn(ids,left,top){
+				$(ids).animate({
+					left:left+'px',
+					top:top+'px',
+					opacity:0.7
+				},10000);
+			}
+
+		})
+
+	</script>
+</body>
+</html>
