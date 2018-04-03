@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="renderer" content="webkit">
+    <title>登录-${sysName}</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <link rel="shortcut icon" href="favicon.ico"> 
+    <link href="${resRoot}/css/bootstrap.min14ed.css" rel="stylesheet">
+    <link href="${resRoot}/css/font-awesome.min93e3.css" rel="stylesheet">
+
+    <link href="${resRoot}/css/animate.min.css" rel="stylesheet">
+    <link href="${resRoot}/css/style.min862f.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+    <script>if(window.top !== window.self){ window.top.location = window.location;}</script>
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen  animated fadeInDown">
+        <div>
+            <div>
+
+                <h1 class="logo-name">Z+</h1>
+
+            </div>
+            <h3>欢迎使用 ${sysName}</h3>
+
+            <form class="m-t" role="form" action="">
+                <div class="form-group">
+                    <input type="text" id="loginName" name="loginName" class="form-control" placeholder="用户名" required="">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="passWord" name="passWord" class="form-control" placeholder="密码" >
+                </div>
+                <button type="button" onclick="return toLogin();" class="btn btn-primary block full-width m-b">登 录</button>
+
+
+                <!-- <p class="text-muted text-center"> <a href="login.html#"><small>忘记密码了？</small></a> | <a href="register.html">注册一个新账号</a> -->
+                </p>
+
+            </form>
+        </div>
+    </div>
+    <script src="${resRoot}/js/jquery.min.js"></script>
+    <script src="${resRoot}/js/bootstrap.min.js"></script>
+    <script src="${resRoot}/js/plugins/layer/layer.min.js"></script>
+    <script type="text/javascript">
+    	function toLogin() {
+    		var loginName = $("#loginName").val();
+    		var psssWord1 = document.getElementById("passWord").value;
+    		if(loginName == "" || loginName == null || loginName =="undifend") {
+    			layer.alert("用户名不能为空！");
+    			return false;
+    		} else if (psssWord1 == "" || psssWord1 == null || psssWord1 =="undifend") {
+    			layer.alert("密码不能为空");
+    			return false;
+    		} else {
+    		var flag = "4";
+	    		$.ajax({
+					type : "post",
+					url : "${base}/ajaxLogin.htm",
+					data : {
+						loginName : loginName,
+						passWord1 : psssWord1
+					},
+					dataType : "json",
+					async : false,
+					success : function(data) {
+						flag  = data.message;
+					}
+				});
+	    		if(flag == "1") {
+	    			layer.alert('用户不存在！')
+	    		} else if(flag == "2") {
+	    			layer.alert('密码错误！')
+	    		} else if(flag == "3") {
+	    			layer.alert('用户名密码不能为空！')
+	    		} else if(flag == "0") {
+	    			window.location.href="${base}/main.htm";
+	    		} else {
+	    			layer.alert('登录出错！')
+	    		}
+    		}
+    	}
+    </script>
+</body>
+
+
+</html>

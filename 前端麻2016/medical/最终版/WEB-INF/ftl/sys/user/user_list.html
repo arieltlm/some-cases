@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+   	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="renderer" content="webkit">
+
+
+    <title>user列表</title>
+
+    <link href="${resRoot}/css/bootstrap.min14ed.css" rel="stylesheet">
+    <link href="${resRoot}/css/font-awesome.min93e3.css" rel="stylesheet">
+    <link href="${resRoot}/css/plugins/footable/footable.core.css" rel="stylesheet">
+
+    <link href="${resRoot}/css/animate.min.css" rel="stylesheet">
+    <link href="${resRoot}/css/style.min862f.css" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                             <button class="btn btn-primary" onclick="createUserPre();" type="button">新增</button>
+
+                        </div>
+                        <div class="ibox-content">
+
+                            <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="8">
+                                <thead>
+                                <tr>
+
+                                    <th data-toggle="true">序号</th>
+                                    <th>名称</th>
+                                    <th data-hide="all">登录名</th>
+                                    <th>电话</th>
+                                    <th data-hide="all">是否删除</th>
+                                    <th data-hide="all">采购数量</th>
+                                    <th data-hide="all">创建时间</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <#list result.datas as userDTO>
+	                                <tr>
+	                                    <td>${userDTO_index + 1}</td>
+	                                    <td>${userDTO.name}</td>
+	                                    <td>${userDTO.loginName}</td>
+	                                    <td>${userDTO.tel}</td>
+	                                    <td><#if userDTO.isDel=="0" >正常<#elseif userDTO.isDel=="1"><font color="red">删除</font></#if></td>
+	                                    <td>200</td>
+	                                    <td>${userDTO.createTime?datetime}</td>
+	                                    <td><a href="${base}/user/savePre.htm?id=${userDTO.id}"><!-- <i class="fa fa-check text-navy"></i> --> 修改</a><a href="javascript:void(0);" onclick="return resetPassword(${userDTO.id});"> 重置密码</a></td>
+	                                </tr>
+                                </#list>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="5">
+                                        
+                                        <#include  "/page/page.html">
+                                        
+                                        
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script src="${resRoot}/js/jquery.min.js"></script>
+    <script src="${resRoot}/js/bootstrap.min.js"></script>
+    <script src="${resRoot}/js/plugins/footable/footable.all.min.js"></script>
+    <script src="${resRoot}/js/content.min.js"></script>
+    <script src="${resRoot}/js/plugins/layer/layer.min.js"></script>
+    <script>
+        function resetPassword(id) {
+        	var flag = 0;
+        	$.ajax({
+				type : "post",
+				url : "${base}/user/resetPassword.htm",
+				data : {
+					id : id
+				},
+				dataType : "json",
+				async : false,
+				success : function(data) {
+					flag  = data.message;
+					if(flag == 1) {
+						layer.alert("重置成功！");
+					} else {
+						layer.alert("重置失败！");
+					}
+				}
+			});
+        }
+        function createUserPre() {
+        	window.location.href = "${base}/user/savePre.htm";
+        }
+    </script>
+</body>
+
+
+</html>

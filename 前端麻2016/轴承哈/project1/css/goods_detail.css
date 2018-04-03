@@ -1,0 +1,124 @@
+body,nav,dl,dt,dd,p,h1,h2,h3,h4,ul,ol,li,input,button,textarea,footer{margin:0;padding:0}
+body{font:16px/1.5 'Microsoft Yahei','Simsun';  color:#333;background:#fff;-webkit-text-size-adjust: none; min-width:320px;}
+h1,h2,h3,h4,h5,h6{font-size:100%}
+form{display:inline}
+ul,ol{list-style:none}
+a{text-decoration:none}
+a:hover, a:active, a:focus{color:#1c5aa2;text-decoration: none;}
+a:active{color:#aaa;}
+img{vertical-align:middle;border:0;-ms-interpolation-mode:bicubic;}
+button,input,select,textarea{font-size:100%; vertical-align:middle;outline:none;}
+textarea{resize:none}
+button,input[type="button"],input[type="reset"],input[type="submit"] {cursor:pointer;-webkit-appearance:button;-moz-appearance:button}
+input:focus:-moz-placeholder,input:focus::-webkit-input-placeholder {color:transparent}
+button::-moz-focus-inner,input::-moz-focus-inner { padding:0; border:0}
+table { border-collapse:collapse; border-spacing:0}
+.fl{float:left;}.fr{float:right;}.hide{display:none;}.show{display: block;}
+.ellipsis { white-space:nowrap; text-overflow:ellipsis; overflow:hidden}
+.break { word-break:break-all; word-wrap:break-word}
+header, footer, article, section, nav, menu{display: block;clear:both;}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.clearfix{overflow:hidden;_zoom:1;}
+
+
+body{
+    height: 100%;
+    background: #E9ECF0;
+}
+header{
+    background-color: #2F2F2F;
+    height: 1.5rem;
+    font-weight: 200;
+    font-size: 0.5rem;
+    letter-spacing: 0.1rem;
+    text-align: center;
+    line-height: 1.5rem;
+    color: #fff
+}
+header .return{
+    position: absolute;
+    left: 0.2rem;
+    width: 2rem;
+    color: #ccc
+}
+.return img{
+    width: 0.6rem;
+    height: 0.6rem;
+}
+
+/**************************/
+section{
+    background: #fff;
+}
+.lunbo{
+    height: 7rem;
+    position: relative;
+}
+.circles{
+    /*background: red;*/
+    /*width: 2rem;*/
+    /*margin: 0 auto;*/
+    position: absolute;
+    left: 40%;
+    bottom: 0.2rem;
+}
+.circles li{
+    float: left;
+    margin: 0 0.2rem;
+}
+.circle{
+    width: 0.2rem;
+    height: 0.2rem;
+    border-radius: 100%;
+    background-color: #D3EDFC;
+}
+
+
+/**/
+.show-all{
+    margin: 0 auto;
+    position: relative;
+}
+
+.show-all section{
+    width: 100%;
+    margin-top: 0.2rem;
+}
+.show-all section h2{
+    margin-left: 5%;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    font-size: 0.6rem;
+    color: #43ABD5;
+}
+.show-all section p{
+    padding-left: 5%;
+    background: #E9ECF0;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    font-size: 0.4rem;
+    color: #B8BDC7;
+}
+.show{
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 0.4rem;
+}
+tr{
+    border-bottom: 1px solid #f7f7f7;
+}
+tr td{
+    height: 1.2rem;
+    line-height: 1.2rem;
+}
+tr th:nth-child(1),tr td:nth-child(1){
+    width: 5rem;
+    text-align: left;
+    color: #B8BDC7;
+}
+tr th:nth-child(2),tr td:nth-child(2){
+    width: 50%;
+    text-align: right;
+}
+

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="renderer" content="webkit">
+
+
+    <title><#if createUserVO?exists && createUserVO != null>更新<#else>新增</#if>用户</title>
+
+    <link href="${resRoot}/css/bootstrap.min14ed.css" rel="stylesheet">
+    <link href="${resRoot}/css/font-awesome.min93e3.css" rel="stylesheet">
+    <link href="${resRoot}/css/plugins/iCheck/custom.css" rel="stylesheet">
+
+    <link href="${resRoot}/css/animate.min.css" rel="stylesheet">
+    <link href="${resRoot}/css/style.min862f.css" rel="stylesheet">
+    
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>新增用户</h5>
+<#if createUserVO?exists && createUserVO != null>
+<input type="hidden" id="id" value="${createUserVO.id}" />
+<#else><input type="hidden" id="id" value="0" /></#if>
+                        </div>
+                        <div class="ibox-content" >
+                        <form method="get" class="form-horizontal">
+						<div class="form-group">
+                                <label class="col-sm-2 control-label">姓名：</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" id="name" value="${createUserVO.name}" class="form-control">
+                                </div>
+                           </div>
+                           <div class="hr-line-dashed"></div>
+                           
+                           <div class="form-group">
+                                <label class="col-sm-2 control-label">登录名</label>
+                                <div class="col-sm-10">
+                                    <input type="text" <#if createUserVO?exists && createUserVO != null>disabled="disabled"</#if> id="loginName" value="${createUserVO.loginName}" class="form-control"> <span class="help-block m-b-none">新建用户默认密码为：123456</span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">手机号</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="tel" value="${createUserVO.tel}" <#if createUserVO?exists && createUserVO != null>disabled="disabled"</#if> class="form-control"> <span class="help-block m-b-none">手机号</span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                           
+                           <div class="form-group">
+                                <label class="col-sm-2 control-label">是否启用</label>
+
+                                <div class="col-sm-10">
+                                    <select class="form-control m-b" id="isDel" name="account">
+                                        <option <#if createUserVO.isDel=="1" >selected="true"</#if> value="1" >否</option>
+						                <option <#if createUserVO.isDel=="0" >selected="true"</#if> value="0">是</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">角色
+                                    <br/>
+                                    <small class="text-navy">用户角色</small>
+                                </label>
+                                <div class="col-sm-10">
+                                    <div class="radio">
+                                <#list roleList as role>
+                                        <label>
+                                            <input type="radio" <#if createUserVO.roleCode==role.roleCode >checked="true"</#if>  value="${role.roleCode}" id="roleCode" name="roleCode">${role.roleName}</label>
+                                   </#list>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="col-md-12">
+								<div class="col-sm-12 col-sm-offset-3">
+								    <button class="btn btn-primary" onclick="save();" type="button">保存</button>
+								    <button class="btn btn-white" onclick="history.go(-1);" type="button">返回</button>
+								</div>
+							</div>
+						<div class="hr-line-dashed"></div>
+							</form>
+
+
+
+
+
+
+
+						<!-- <form method="get" class="form-horizontal">
+						<div class="col-md-6">
+						    <div class="form-group">
+						        <label class="col-sm-3 control-label">用户名：</label>
+						        <div class="col-sm-9">
+						            <input name="loginName" id="loginName" class="form-control" placeholder="请输入登录名" type="text"> <span class="help-block m-b-none">新创建的用户密码为初始密码 123456</span>
+						
+						        </div>
+						    </div>
+						    <div class="form-group">
+						        <label class="col-sm-3 control-label">是否启用：</label>
+						        <div class="col-sm-9">
+						            <select class="form-control" id="idDel" name="">
+						                <option value="1" >否</option>
+						                <option value="0">是</option>
+						            </select>
+						        </div>
+						    </div>
+						    
+						</div>
+						<div class="col-md-6">
+						    <div class="form-group">
+						        <label class="col-sm-3 control-label">姓名：</label>
+						        <div class="col-sm-9">
+						            <input name="" class="form-control" placeholder="请输入姓名" type="text"> <span class="help-block m-b-none"></span>
+						
+						        </div>
+						    </div>
+						    <div class="form-group ui-sortable-helper">
+						        <label class="col-sm-3 control-label">单选框：</label>
+						        <div class="col-sm-9">
+						            <label class="radio-inline">
+						                <input checked="" value="option1" id="optionsRadios1" name="optionsRadios" type="radio">选项1</label>
+						            <label class="radio-inline">
+						                <input value="option2" id="optionsRadios2" name="optionsRadios" type="radio">选项2</label>
+						        </div>
+						    </div>
+						    <div class="form-group ui-sortable-helper">
+						        <label class="col-sm-3 control-label">角色：</label>
+						        <div class="col-sm-9">
+						        	<#list roleList as role>
+						            <label class="radio-inline">
+						                <input checked="" value="${role.roleCode}" id="optionsRadios1" name="optionsRadios" type="radio">${role.roleName}</label>
+						        	</#list>
+						        </div>
+						    </div>
+						</div>
+						
+						<div class="col-md-12">
+						    <div class="form-group ui-sortable-helper">
+						        <label class="col-sm-3 control-label" style="width:130px;">单选框：</label>
+						        <div class="col-sm-9">
+						        <#list roleList as role>
+						            <label class="radio-inline">
+						                <input checked="" value="${role.roleCode}" id="optionsRadios1" name="optionsRadios" type="radio">${role.roleName}</label>
+					            </#list>
+						        </div>
+						    </div>
+						</div>
+						
+						<div class="col-md-12">
+							<div class="col-sm-12 col-sm-offset-3">
+							    <button class="btn btn-primary" type="submit">保存</button>
+							    <button class="btn btn-white" onclick="history.go(-1);" type="button">返回</button>
+							</div>
+						</div>
+						</form>
+ -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script src="${resRoot}/js/jquery.min.js"></script>
+    <script src="${resRoot}/js/bootstrap.min.js"></script>
+    <script src="${resRoot}/js/plugins/footable/footable.all.min.js"></script>
+    <script src="${resRoot}/js/content.min.js"></script>
+    <script src="${resRoot}/js/plugins/layer/layer.min.js"></script>
+    <!-- <script>
+        $(document).ready(function(){$(".footable").footable();$(".footable2").footable()});
+        
+        
+    </script> -->
+    <script type="text/javascript">
+    	function save() {
+    		var id = $("#id").val();
+    		var name = $("#name").val();
+    		var loginName = $("#loginName").val();
+    		var isDel=$("#isDel").val();
+    		var roleCode = $('input[name="roleCode"]:checked').val()
+    		var tel =$("#tel").val();
+    		
+    		$.ajax({
+				type : "post",
+				url : "${base}/user/save.htm",
+				data : {
+					id : id,
+					name : name,
+					loginName : loginName,
+					isDel : isDel,
+					roleCode : roleCode,
+					tel : tel
+				},
+				dataType : "json",
+				async : false,
+				success : function(data) {
+					flag  = data.message;
+					if(flag == 1) {
+						alert("保存成功！");
+						window.location.href="${base}/user/list.htm";
+					} else if(flag == 2) {
+						layer.alert("数据错误，请完善数据！");
+					} else if(flag == 0){
+						layer.alert("服务器异常！");
+					}
+				}
+			});
+    		
+    	}
+    </script>
+</body>
+
+
+</html>

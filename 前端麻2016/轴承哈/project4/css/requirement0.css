@@ -1,0 +1,66 @@
+.req_input table{
+	width: 100%;
+	background-color: #fff;
+	margin-top: 0.6rem;
+}
+body{
+	background-color:#e9ecf0;
+}
+td{
+	border-bottom:1px solid #ccc;
+	font-size: 0.48rem;
+	padding: 0.5rem 0;
+	padding-left: 0.45rem;
+}
+td:first-child{
+	/*padding-left: 0.45rem;*/
+	width:20%;
+}
+tr:nth-child(7) td{
+	padding-top:0.2rem;
+	padding-bottom:0.2rem;
+	background-color:#e9ecf0;
+	color:#c5cedb;;
+}
+td span{
+	color:red;
+}
+.req_input td input,.req_input td textarea{
+	border: none;
+	outline: none;
+	resize: none;
+}
+.subtn{
+
+	width:95%;
+	height:1.32rem;
+	background-color: #029ccf;
+	color:#fff;
+	font-size:0.5rem;
+	-webkit-border-radius: 0.2rem;
+	border-radius: 0.2rem;
+	border:none;
+	margin: 0.23rem ;
+}
+.req_input table a{
+	position: relative;
+	display: inline-block;
+	 width:60px;
+	height:60px; 
+	line-height:60px; 
+	border: 1px solid #d8dde5;
+	color: #AAB2B9;
+	font-size:0.4rem;
+	/*margin-left: 1.3rem;*/
+	margin-top: 0.1rem;
+	overflow-y: hidden;
+}
+.req_input .files{
+	position:relative;
+	top:-60px; 
+	left:0;
+	margin:0;
+	opacity: 0;
+	width:60px;
+	height:60px;  
+}

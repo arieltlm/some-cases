@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>${bearingInfoDTO.brand} ${bearingInfoDTO.model}-产品详情</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link href="${resRoot}/member/css/goods_detail0.css" rel="stylesheet" type="text/css">
+    <!-- head 中 -->
+	<link rel="stylesheet" href="//cdn.bootcss.com/weui/0.4.3/style/weui.min.css">
+	<link rel="stylesheet" href="//cdn.bootcss.com/jquery-weui/0.8.0/css/jquery-weui.min.css">
+    	<style>
+      .swiper-container {
+        width: 100%;
+      } 
+      .swiper-container img {
+        display: block;
+        width: 100%;
+      }
+    </style>
+<#include  "/member/count.html">
+
+</head>
+<body>
+<!-- <header><a href="#" class="return"> <img src="img/left-arrow.svg" alt="return">返回</a><h1>产品详情</h1></header> -->
+
+<div class="swiper-container" data-space-between='10' data-pagination='.swiper-pagination' data-autoplay="1000">
+    <div class="swiper-wrapper">
+        <#list picUrlList as picUrl>
+        <div class="img swiper-slide"><img src="${picUrl.imageUrl}"></div>
+    	</#list>
+    </div>
+</div>
+<div class="show-all">
+    <section class="type-name">
+        <h2>${bearingInfoDTO.brand} / ${bearingInfoDTO.model}</h2>
+    </section>
+    <section class="type">
+        <table class="show">
+            <tr><td>型号</td><td>${bearingInfoDTO.model}</td></tr>
+            <tr><td>品牌</td><td>${bearingInfoDTO.brand}</td></tr>
+            <tr><td>数量</td><td>${bearingInfoDTO.count}</td></tr>
+            <tr><td>单价</td><td>****</td></tr>
+            <tr><td>备注</td><td>${bearingInfoDTO.detialRemark}</td></tr>
+            <tr><td>手机</td><td>${bearingInfoDTO.userTel}</td></tr>
+            <tr><td>发布时间</td><td>${bearingInfoDTO.updateTime?date}</td></tr>
+        </table>
+    </section>
+    <section class="click-name">
+        <p>点击以下任何一个方式联系我们</p>
+    </section>
+    <section class="contact">
+        <table class="show">
+            <tr id="t-phone"><td>联系电话</td><td><a href="tel:${bearingContactDTO.adminPhone}">${bearingContactDTO.adminPhone}</a></td></tr>
+            <tr id="t-weixin"><td>微信</td><td><a>${bearingContactDTO.adminWeixin}</a></td></tr>
+            <tr id="t-qq"><td>QQ</td><td><a href="http://wpa.qq.com/msgrd?v=3&uin=${bearingContactDTO.adminQQ}&site=qq&menu=yes&from=message&isappinstalled=0">${bearingContactDTO.adminQQ}</a></td></tr>
+        </table>
+    </section>
+</div>
+<div id="bubble-box">
+    <div class="qr-code">
+        <h3>官方微信</h3>
+        <img src="${bearingContactDTO.weixinImg}" alt="qr-code">
+        <p>长按识别二维码<br>关注官方微信</p>
+        <img id="bubble-close" src="${resRoot}/member/img/close.gif">
+    </div>
+</div>
+</body>
+<script src="${resRoot}/js/jquery.min.js"></script>
+<script src="${resRoot}/member/js/rem.js"></script>
+<script src="//cdn.bootcss.com/Swiper/3.3.1/js/swiper.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+    var weixin = document.getElementById("t-weixin");
+    var bubbleBox = document.getElementById("bubble-box");
+    var bubbleClose = document.getElementById("bubble-box");
+    var totalWidth = document.body.scrollHeight;
+    weixin.onclick = function(){
+        bubbleBox.style.display = 'block';
+        bubbleBox.style.height = totalWidth + 'px';
+    };
+    bubbleClose.onclick =function(){
+        bubbleBox.style.display = 'none';
+    }
+}
+var mySwiper = new Swiper('.swiper-container',{
+	autoplay : 3000,
+	})
+</script>
+</html>

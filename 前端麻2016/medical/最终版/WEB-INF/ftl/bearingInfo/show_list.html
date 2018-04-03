@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+   	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="renderer" content="webkit">
+    <title>轴承产品列表</title>
+
+    <link href="${resRoot}/css/bootstrap.min14ed.css" rel="stylesheet">
+    <link href="${resRoot}/css/font-awesome.min93e3.css" rel="stylesheet">
+    <link href="${resRoot}/css/plugins/footable/footable.core.css" rel="stylesheet">
+
+    <link href="${resRoot}/css/animate.min.css" rel="stylesheet">
+    <link href="${resRoot}/css/style.min862f.css" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+								<form method="get" class="form-horizontal">
+								<div class="col-md-6">
+								    <div class="form-group">
+								        <label class="col-sm-3 control-label">产品型号：</label>
+								        <div class="col-sm-9">
+								            <input type="text" name="" id="model" value="${param.model}" maxlength="30" class="form-control" placeholder="请输入产品型号"><!--  <span class="help-block m-b-none">说明文字</span> -->
+								
+								        </div>
+								    </div>
+								</div>
+								<div class="col-md-6">
+								    <div class="form-group">
+								        <label class="col-sm-3 control-label">是否删除：</label>
+								        <div class="col-sm-9">
+								            <select class="form-control" id="isDel" name="" >
+								            	<option value="0" <#if param.isDel=="0">selected="true"</#if> >未删除</option>
+								            	<option value="1" <#if param.isDel=="1">selected="true"</#if> >已删除</option>
+								            </select>
+								        </div>
+								    </div>
+								</div>
+								<div class="col-md-6">
+								    <div class="form-group">
+								        <label class="col-sm-3 control-label">用户手机：</label>
+								        <div class="col-sm-9">
+								            <input type="text" name="" value="${param.userTel}" id="userTel" maxlength="11" class="form-control" placeholder="请输入手机号"><!--  <span class="help-block m-b-none">说明文字</span> -->
+								
+								        </div>
+								    </div>
+								</div>
+								<button class="btn btn-primary" onclick="createBearingPre();" type="button">新增</button>
+								<button class="btn btn-primary" onclick="selectBearing();" type="button">查询</button>
+								</form>
+								
+								
+								
+                        </div>
+                        <div class="ibox-content">
+
+                            <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="8">
+                                <thead>
+                                <tr>
+
+                                    <th data-toggle="true">序号</th>
+                                    <th data-hide="all">型号</th>
+                                    <th>品牌</th>
+                                    <th>数量</th>
+                                    <th>单价</th>
+                                    <th>手机</th>
+                                    <th data-hide="all">是否推荐</th>
+                                    <th data-hide="all">创建时间</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <#list result.datas as bearingInfoDTO>
+	                                <tr>
+	                                    <td>${result.pageSize* (result.pageNumber - 1) + bearingInfoDTO_index + 1}</td>
+	                                    <td>${bearingInfoDTO.model}</td>
+	                                    <td>${bearingInfoDTO.brand}</td>
+	                                    <td>${bearingInfoDTO.count}</td>
+	                                    <td>${bearingInfoDTO.price}</td>
+	                                    <td>${bearingInfoDTO.userTel}</td>
+	                                    <td><#if bearingInfoDTO.isRecommend=="0" >不推荐<#elseif bearingInfoDTO.isRecommend=="1"><font color="red">推荐</font></#if></td>
+	                                    <td>${bearingInfoDTO.createTime?datetime}</td>
+	                                    <td><a href="${base}/bearing/preSave.htm?id=${bearingInfoDTO.id}"> 修改</a> <a href="javascript:void(0);" onclick="del('${bearingInfoDTO.code}');"> 删除</a>
+	                                    <#if bearingInfoDTO.isRecommend=="0" >
+		                                    <a href="javascript:void(0);" onclick="isRecommend('${bearingInfoDTO.id}','1');"> 推荐</a>
+	                                    <#else>
+	                                    	<a href="javascript:void(0);" onclick="isRecommend('${bearingInfoDTO.id}','0');"> 不推荐</a>
+	                                    </#if>
+	                                    </td>
+	                                </tr>
+                                </#list>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="5">
+                                        <#assign pageUrl=base + '/bearing/list.htm?type=' + param.type + '&isDel=' + param.isDel + '&userTel=' + param.userTel + '&' >
+                                        <#include  "/page/page.html">
+                                        
+                                        
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script src="${resRoot}/js/jquery.min.js"></script>
+    <script src="${resRoot}/js/bootstrap.min.js"></script>
+    <script src="${resRoot}/js/plugins/footable/footable.all.min.js"></script>
+    <script src="${resRoot}/js/content.min.js"></script>
+    <script src="${resRoot}/js/plugins/layer/layer.min.js"></script>
+    <script>
+        function createBearingPre() {
+        	window.location.href = "${base}/bearing/preSave.htm";
+        }
+        
+        function selectBearing() {
+        	var userTel= $("#userTel").val();
+        	var model = $("#model").val();
+        	var isDel = $("#isDel").val();
+        	window.location.href = "${base}/bearing/list.htm?model=" + model + "&isDel=" + isDel + "&userTel=" + userTel;
+        }
+        
+        function del(code) {
+        	 if(confirm("确认删除该条轴承信息吗？")){
+	        	$.ajax({
+					type : "post",
+					url : "${base}/bearing/del.htm",
+					data : {
+						code : code
+					},
+					dataType : "json",
+					async : false,
+					success : function(data) {
+						flag  = data.message;
+						if(flag == 1) {
+				    		alert("删除成功！");
+				    		window.location.href = "${base}/bearing/list.htm";
+						} else {
+							layer.alert("服务器异常！");
+						}
+					}
+				});
+        	 }
+        }
+        
+        function isRecommend(id, isRecommend) {
+         	 if(confirm("确认修改该条轴承推荐信息吗？")){
+             	$.ajax({
+      				type : "post",
+      				url : "${base}/bearing/isRecommend.htm",
+      				data : {
+      					id : id,
+      					isRecommend : isRecommend
+      				},
+      				dataType : "json",
+      				async : false,
+      				success : function(data) {
+      					flag  = data.message;
+      					if(flag == 1) {
+      			    		alert("修改推荐状态成功！");
+      			    		window.location.reload(); // window.location.href = "${base}/bearingService/show.htm";
+      					} else {
+      						layer.alert("服务器异常！");
+      					}
+      				}
+      			});
+         	 }
+         }
+    </script>
+</body>
+
+
+</html>

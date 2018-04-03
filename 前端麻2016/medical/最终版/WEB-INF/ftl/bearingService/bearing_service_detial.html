@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="renderer" content="webkit">
+
+    <title>轴承求购信息</title>
+
+    <link href="${resRoot}/css/bootstrap.min14ed.css" rel="stylesheet">
+    <link href="${resRoot}/css/font-awesome.min93e3.css" rel="stylesheet">
+    <link href="${resRoot}/css/plugins/iCheck/custom.css" rel="stylesheet">
+
+    <link href="${resRoot}/css/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="${resRoot}/css/plugins/webuploader/webuploader.css">
+    <link rel="stylesheet" type="text/css" href="${resRoot}/css/demo/webuploader-demo.min.css">
+    <link href="${resRoot}/css/style.min862f.css" rel="stylesheet">
+    
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>轴承求购信息</h5>
+                        </div>
+                        <div class="ibox-content" >
+                        <form method="get" class="form-horizontal">
+                           <div class="form-group">
+                                <label class="col-sm-2 control-label">求购品牌：</label>
+                                <div class="col-sm-10">
+                                    <input type="text"  id="brand" value="${bearingServiceDTO.brand}" maxlength="50" class="form-control"> <span class="help-block m-b-none"></span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">求购型号：</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="model" value="${bearingServiceDTO.model}" maxlength="50"  class="form-control"> <span class="help-block m-b-none"></span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">求购产品数量：</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="count" value="${bearingServiceDTO.count}" maxlength="10"  class="form-control"> <span class="help-block m-b-none"></span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">求购产品价格：</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="price" value="${bearingServiceDTO.price}" maxlength="20"  class="form-control"> <span class="help-block m-b-none"></span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">求购人电话：</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="userTel" value="${bearingServiceDTO.userTel}" maxlength="11"   class="form-control"> <span class="help-block m-b-none"></span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">是否推荐：</label>
+                                <div class="col-sm-10">
+                               			<select class="form-control" id="isRecommend" name="isRecommend" >
+							            	<option value="0" <#if bearingServiceDTO.isRecommend=="0">selected="true"</#if> >未删除</option>
+							            	<option value="1" <#if bearingServiceDTO.isRecommend=="1">selected="true"</#if> >推荐</option>
+							            </select>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">求购详情备注：</label>
+                                <div class="col-sm-10">
+                                    <textarea  type="text" id="detialRemark" class="form-control" maxlength="500"  >${bearingServiceDTO.detialRemark}</textarea> <span class="help-block m-b-none"></span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="ibox-content" >
+								<label class="col-sm-2 control-label">求购产品图片：</label>
+								<div class="col-sm-10">
+								<!-- <input type="file" name="fileField" id="fileField" class="file" size="28" onchange="uploadImage(this,id);"  /> -->
+								<!-- <span class="help-block m-b-none">图片大小为300px* 300px</span> -->
+								</div>
+								<!-- onchange="uploadImage(this,id);"  ${base}/uploadImage.htm-->
+		                            <div class="dropzone-previews">
+		                            	<#list picUrlList as picUrl>
+		                            	<a href="javascript:void(0);" id="imag_${picUrl_index}">
+		                            	<img data-dz-thumbnail=''  style="width:110px;height:110px;" id='imgUrl' imagename="${picUrl.imageName}" imgUrl='${picUrl.imageName}'  src='${picUrl.imageUrl}' />
+		                            	</a>
+		                            	</#list>
+		                            </div>
+		                            <!-- <button type="submit" class="btn btn-primary pull-right">提交</button> -->
+                        	</div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="col-md-12">
+								<div class="col-sm-12 col-sm-offset-3">
+								<#if bearingServiceDTO.isRecommend=="0">
+								    <button class="btn btn-primary" onclick="isRecommends('${bearingServiceDTO.id}','1');" type="button">推荐</button>
+								<#else>
+									<button class="btn btn-primary" onclick="isRecommends('${bearingServiceDTO.id}','0');" type="button">不推荐</button>
+								</#if>
+								    <button class="btn btn-white" onclick="window.location.href = '${base}/bearingService/show.htm';" type="button">返回</button>
+								</div>
+							</div>
+						<div class="hr-line-dashed"></div>
+							</form>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script src="${resRoot}/js/jquery.min.js"></script>
+    <script src="${resRoot}/js/bootstrap.min.js"></script>
+    <!-- <script src="${resRoot}/js/plugins/footable/footable.all.min.js"></script> -->
+    <!-- <script src="${resRoot}/js/content.min.js"></script> -->
+    <script src="${resRoot}/js/plugins/layer/layer.min.js"></script>
+    <script type="text/javascript" src="${resRoot}/js/ajaxfileupload.js"></script>
+    <!-- <script src="js/plugins/webuploader/webuploader.min.js"></script> -->
+    <!-- <script src="js/demo/webuploader-demo.min.js"></script> -->
+    <!-- <script>
+        $(document).ready(function(){$(".footable").footable();$(".footable2").footable()});
+    </script> -->
+    <script type="text/javascript">
+    function isRecommends(id, isRecommend) {
+   	 if(confirm("确认推荐该条需求信息到首页吗？")){
+       	$.ajax({
+				type : "post",
+				url : "${base}/bearingService/isRecommend.htm",
+				data : {
+					id : id,
+					isRecommend : isRecommend
+				},
+				dataType : "json",
+				async : false,
+				success : function(data) {
+					flag  = data.message;
+					if(flag == 1) {
+			    		alert("修改推荐状态成功！");
+			    		window.location.reload(); // window.location.href = "${base}/bearingService/show.htm";
+					} else {
+						layer.alert("服务器异常！");
+					}
+				}
+			});
+   	 }
+   }
+    </script>
+</body>
+
+
+</html>

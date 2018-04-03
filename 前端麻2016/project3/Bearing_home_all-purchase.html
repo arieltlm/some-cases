@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>所有产品</title>
+    <link href="css/Bearing_home_all-purchase.css" rel="stylesheet" type="text/css">
+    <link href="css/cssRest.css" rel="stylesheet" type="text/css">
+    <script src="js/rem.js"></script>
+    <script src="js/jquery-1.8.2.min.js"></script>
+</head>
+<body>
+<main>
+    <section class="ads"><img src="img/tu.png" alt="广告位"></section>
+    <nav>
+        <ul>
+            <li><a href="Bearing_home_all-stock.html">库存信息</a></li>
+            <li><a href="Bearing_home_all-purchase.html">采购信息</a></li>
+            <li><a href="Bearing_home_contact.html">联系信息</a></li>
+        </ul>
+    </nav>
+    <section class="notice">
+        <ul>
+            <li>
+               <a href="javascript:;"><img src="img/news.png"><span>采购更新了1，美得很</span></a> 
+            </li>
+             <li>
+               <a href="javascript:;"><img src="img/news.png"><span>采购更新了2，美得很</span></a> 
+            </li>
+             <li>
+               <a href="javascript:;"><img src="img/news.png"><span>采购更新了3，美得很</span></a> 
+            </li>
+            <li>
+               <a href="javascript:;"><img src="img/news.png"><span>采购更新了1，美得很</span></a> 
+            </li>
+        </ul>
+    </section>
+    <section class="search">
+        <input type="text" class="search-box" placeholder="请输入型号搜索">
+        <input type="button" class="search-btn" value="搜 索">
+    </section>
+    <section class="show-all">
+        <table class="show">
+            <tr><th>编号</th><th>型号</th><th>品牌</th><th>数量</th><th>详情</th></tr>
+            <tr><td>1</td><td>25678</td><td>SKF</td><td>1200</td><td><a href="Bearing_home_purchase-detail.html">查看</a></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td><span></span><span></span></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td><span></span><span></span></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td><span></span><span></span></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td><span></span><span></span></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td><span></span><span></span></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td><span></span><span></span></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td><span></span><span></span></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td><span></span><span></span></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td><span></span><span></span></td></tr>
+        </table>
+        <div class="btns flex">
+            <button id="pre">上一页</button>
+            <button id="next">下一页</button>
+        </div>
+    </section>
+</main>
+<footer class="flex">
+    <div class="foot"><a href="Bearing_home_all-purchase.html"><img src="img/f11.png" alt="home"><p>首  页</p></a></div>
+    <div class="foot"><a href=""><img src="img/f2.png" alt="publish stock"><p>发布库存</p></a></div>
+    <div class="foot"><a href="Bearing_my-stock.html"><img src="img/f3.png" alt="my stock"><p>我的库存</p></a></div>
+    <div class="foot"><a href=""><img src="img/f4.png" alt="release purchasing"><p>发布采购</p></a></div>
+    <div class="foot"><a href="Bearing_my-purchase.html"><img src="img/f5.png" alt="my purchasing"><p>我的采购</p></a></div>
+</footer>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var nums=$(".notice li").length;
+        var i = 1;
+        var speed=1000; 
+        
+        var d = setInterval(function(){
+            var topValue='-'+0.6*i;
+            $(".notice ul").animate({
+                top:topValue+'rem'
+            },speed)
+
+            i++;
+ 
+            if(i==nums){
+                i=0;
+                speed=0;
+            }else{
+                speed=1000;
+            }
+        },2500)
+    })
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="renderer" content="webkit">
+
+
+    <title>菜单列表</title>
+
+    <link href="${resRoot}/css/bootstrap.min14ed.css" rel="stylesheet">
+    <link href="${resRoot}/css/font-awesome.min93e3.css" rel="stylesheet">
+    <link href="${resRoot}/css/plugins/footable/footable.core.css" rel="stylesheet">
+
+    <link href="${resRoot}/css/animate.min.css" rel="stylesheet">
+    <link href="${resRoot}/css/style.min862f.css" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                             <button class="btn btn-primary" onclick="saveAuthority();" type="button">保存</button>
+                             <button class="btn btn-white" onclick="history.go(-1);" type="button">返回</button>
+							<input type="hidden" id="roleCode" value="${roleCode}" >
+                        </div>
+                        <div class="ibox-content">
+							
+							<#list menuVOList as menuVO>
+							<div class="row show-grid">
+                            <div class="col-md-9">
+                              <input type="checkbox"<#if menuVO.isSelect=="1" >checked="true"</#if>  value="${menuVO.id}" name="menuId" id="menuId">${menuVO.menuName}
+                                <!-- <a href="${base}/menu/savePre.htm?id=${menuVO.id}" style="float:right;" >修改</a> -->
+                                <div class="row show-grid">
+                                <#list menuVO.childMenuList as childMenu>
+                                    <div class="col-md-9">
+                                       <input type="checkbox" <#if childMenu.isSelect=="1" >checked="true"</#if> value="${childMenu.id}" name="menuId" id="menuId">${childMenu.menuName}
+                                        <!-- <a href="${base}/menu/savePre.htm?id=${childMenu.id}" style="float:right;" >修改</a> -->
+                                    </div>
+                                </#list>
+                                </div>
+                            </div>
+                        </div>
+							</#list>
+							
+							
+						
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script src="${resRoot}/js/jquery.min.js"></script>
+    <script src="${resRoot}/js/bootstrap.min.js"></script>
+    <script src="${resRoot}/js/plugins/footable/footable.all.min.js"></script>
+    <script src="${resRoot}/js/content.min.js"></script>
+    <script type="text/javascript">
+    function saveAuthority() {
+    	var menuIdStr = [];
+    	var roleCode=$("#roleCode").val();
+    	$('input[name="menuId"]:checked').each(function(){
+    		menuIdStr = menuIdStr + $(this).val() + ",";
+    		}); 
+    	$.ajax({
+			type : "post",
+			url : "${base}/role/setAuthority.htm",
+			data : {
+				menuIdStr : menuIdStr,
+				roleCode : roleCode
+			},
+			dataType : "json",
+			async : false,
+			success : function(data) {
+				flag  = data.message;
+				if(flag == 1) {
+					alert("保存成功！");
+					window.location.href="${base}/role/list.htm";
+				} else if(flag == 2) {
+					layer.alert("数据错误，请完善数据！");
+				} else if(flag == 0){
+					layer.alert("服务器异常！");
+				}
+			}
+		});
+    	
+    }
+    </script>
+</body>
+
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

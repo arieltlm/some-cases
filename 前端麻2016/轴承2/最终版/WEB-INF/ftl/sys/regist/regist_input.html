@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+   	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="renderer" content="webkit">
+
+
+    <title><#if createUserVO?exists && createUserVO != null>更新<#else>新增</#if>用户</title>
+
+    <link href="${resRoot}/css/bootstrap.min14ed.css" rel="stylesheet">
+    <link href="${resRoot}/css/font-awesome.min93e3.css" rel="stylesheet">
+    <link href="${resRoot}/css/plugins/iCheck/custom.css" rel="stylesheet">
+
+    <link href="${resRoot}/css/animate.min.css" rel="stylesheet">
+    <link href="${resRoot}/css/style.min862f.css" rel="stylesheet">
+    
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>新增用户</h5>
+                        </div>
+                        <div class="ibox-content" >
+                        <form method="get" class="form-horizontal">
+						<div class="form-group">
+                                <label class="col-sm-2 control-label">註冊名稱</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" id="loginName" value="" class="form-control">
+                                </div>
+                           </div>
+                           <div class="hr-line-dashed"></div>
+                           
+                           <div class="form-group">
+                                <label class="col-sm-2 control-label">註冊碼</label>
+                                <div class="col-sm-10">
+                                    <input type="text"  id="registCode" value="" class="form-control"> <span class="help-block m-b-none"></span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="col-md-12">
+								<div class="col-sm-12 col-sm-offset-3">
+								    <button class="btn btn-primary" onclick="save();" type="button">保存</button>
+								    <button class="btn btn-white" onclick="history.go(-1);" type="button">返回</button>
+								</div>
+							</div>
+						<div class="hr-line-dashed"></div>
+							</form>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script src="${resRoot}/js/jquery.min.js"></script>
+    <script src="${resRoot}/js/bootstrap.min.js"></script>
+    <script src="${resRoot}/js/plugins/footable/footable.all.min.js"></script>
+    <script src="${resRoot}/js/content.min.js"></script>
+    <script src="${resRoot}/js/plugins/layer/layer.min.js"></script>
+    <!-- <script>
+        $(document).ready(function(){$(".footable").footable();$(".footable2").footable()});
+        
+        
+    </script> -->
+    <script type="text/javascript">
+    	function save() {
+    		var loginName = $("#loginName").val();
+    		var registCode=$("#registCode").val();
+    		var flag = true;
+    		if(loginName.length < 8) {
+    			alert("註冊名稱不能少於8個字符");
+    			flag = false;
+    		}
+    		if(flag) {
+	    		$.ajax({
+					type : "post",
+					url : "${base}/user/save.htm",
+					data : {
+						loginName : loginName,
+						registCode : registCode
+					},
+					dataType : "json",
+					async : false,
+					success : function(data) {
+						flag  = data.message;
+						if(flag == 1) {
+							alert("保存成功！");
+							window.location.href="${base}/login.htm";
+						} else if(flag == 2) {
+							layer.alert("数据错误，请完善数据！");
+						} else if(flag == 0){
+							layer.alert("服务器异常！");
+						}
+					}
+				});
+    		}
+    		
+    	}
+    </script>
+</body>
+
+
+</html>

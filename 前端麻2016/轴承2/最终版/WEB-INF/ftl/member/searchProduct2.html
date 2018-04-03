@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页-轴承库存网</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link href="${resRoot}/member/css/all_goods.css" rel="stylesheet" type="text/css">
+    <script src="${resRoot}/member/js/rem.js"></script>
+<#include  "/member/count.html">
+
+</head>
+<body>
+<!-- <header><a href="#" class="return"> <img src="img/left-arrow.svg" alt="return">返回</a><h1>所有产品</h1></header> -->
+<section class="ads"><img src="${resRoot}/member/img/index_test.jpg" alt="广告位"></section>
+<section class="search" >
+	<input type="text" class="search-box" id="modelParam" placeholder="请输入型号搜索">
+    <input type="button" class="search-btn" value="搜 索" onclick="return index();" >
+</section>
+<section class="show-all">
+    <table class="show">
+        <tr><th>编号</th><th>型号</th><th>品牌</th><th>数量</th><th>详情</th></tr>
+        <#list result.datas as bearingInfo>
+	      <tr>
+	        <td>${result.pageSize * (result.pageNumber -1) + bearingInfo_index + 1}</td>
+	        <td>${bearingInfo.model}</td> 
+	        <td>${bearingInfo.brand}</td>
+	        <td>${bearingInfo.count}</td>
+	        <td><a href="${base}/member/detial_pc_${bearingInfo.code}" title="点击查看详情">查看</a></td>
+	      </tr>
+      </#list>
+    </table>
+    <#if result.pageCount &gt; 1 >
+    	<#if result.pageNumber==1>
+    	<button id="pre">上一页</button>
+    	<#else>
+      	<button onclick="previous();" id="pre" >上一页</button>
+    	</#if>
+    	<#if result.pageNumber==result.pageCount>
+    	<button id="next">下一页</button>
+    	<#else>
+      	<button id="next" onclick="next();">下一页</button>
+    	</#if>
+   	</#if>
+</section>
+<div>
+<div style="height:2rem;">
+</div>
+<footer style="bottom：0;" >
+    <!-- <div class="foot" onclick="publishProduct();"><img src="${resRoot}/member/img/d1.gif" alt="showout"><p>发布库存</p></div>
+    <div class="foot" onclick="myProduct();"><img src="${resRoot}/member/img/d3.gif" alt="me"><p>我的库存</p></div>
+    <div class="foot" onclick="contactUs();"><img src="${resRoot}/member/img/d2.gif" alt="mail"><p>联系我们</p></div> -->
+</footer>
+</div>
+<script src="${resRoot}/js/jquery.min.js"></script>
+<script type="text/javascript">
+  	function next() {
+  		window.location.href="${base}/member/index?model=${param.model}&pageNumber=${result.pageNumber+1}";
+  	}
+  	
+  	function previous() {
+  		window.location.href="${base}/member/index?model=${param.model}&pageNumber=${result.pageNumber-1}";
+  	}
+  	
+  	function index() {
+  		var modelParam = $("#modelParam").val();
+  		window.location.href="${base}/member/index?model=" + modelParam;
+  	}
+  </script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>联系我们-轴承库存网</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link href="${resRoot}/member/css/Bearing_home_contact.css" rel="stylesheet" type="text/css">
+     <link href="${resRoot}/member/css/cssRest.css" rel="stylesheet" type="text/css">
+     <link rel="stylesheet" href="//cdn.bootcss.com/weui/0.4.3/style/weui.min.css">
+	<link rel="stylesheet" href="//cdn.bootcss.com/jquery-weui/0.8.0/css/jquery-weui.min.css">
+	<link rel="stylesheet" href="${resRoot}/dist/docs-demos.css">
+    <script src="${resRoot}/member/js/rem.js"></script>
+    <script src="${resRoot}/member/js/jquery-1.8.2.min.js"></script>
+<#include  "/member/count.html">
+<style type="text/css">
+ .weui_tabbar img{
+	width: 1rem;
+	height: 1rem;
+	margin-left: -0.2rem;
+ }
+ .weui_tabbar p{
+ 	font-size: 0.36rem;
+ }
+ .weui_tabbar .weui_tabbar_item .cblue{
+ 	color:#069DCF;
+ }
+</style>
+</head>
+<body ontouchstart>
+<div class="weui_tab">
+  <div class="weui_tab_bd">
+<section class="ads"><img src="${resRoot}/member/img/index_test.jpg?v=123" alt="广告位"></section>
+    <nav>
+         <ul>
+            <li><a href="${base}/member/search">库存信息</a></li>
+            <li><a href="${base}/member/searchService">采购信息</a></li>
+            <li><a href="${base}/member/contactUs">联系我们</a></li>
+        </ul>
+    </nav>
+<div class="show-all">
+    <h1>温馨提示</h1>
+    <table class="show">
+        <tr><th></th><td colspan="2">如果您有任何疑问和要求，请及时联系我们!</td></tr>
+        <tr><td></td><td>电话：</td><td style="color:#029CCF"><a href="tel:${bearingContactDTO.adminTel}">${bearingContactDTO.adminTel}</a></td></tr>
+        <tr><td></td><td>传真：</td><td>${bearingContactDTO.adminFax}</td></tr>
+        <tr><td></td><td>手机：</td><td><a href="tel:${bearingContactDTO.adminPhone}">${bearingContactDTO.adminPhone}</a></td></tr>
+        <tr><td></td><td>Q Q：</td><td><a href="http://wpa.qq.com/msgrd?v=3&uin=${bearingContactDTO.adminQQ}&site=qq&menu=yes&from=message&isappinstalled=0">${bearingContactDTO.adminQQ}</a></td></tr>
+        <tr id="c-weixin" ><td></td><td>微信：</td><td>${bearingContactDTO.adminWeixin}</td></tr>
+        <tr><td></td><td>地址：</td><td>${bearingContactDTO.adminAddress}</td></tr>
+    </table>
+</div>
+
+<div id="bubble-box">
+    <div class="qr-code">
+        <h3>官方微信</h3>
+        <img src="${bearingContactDTO.weixinImg}" alt="qr-code">
+        <p>长按识别二维码<br>关注官方微信</p>
+        <img id="bubble-close" src="${resRoot}/member/img/close.gif">
+    </div>
+</div>
+
+
+</div>
+  <div class="weui_tabbar">
+    <a href="javascript:;" onclick="return toSearch();" class="weui_tabbar_item cblue">
+      <div class="weui_tabbar_icon">
+        <img src="${resRoot}/member/img/f11.png" alt="">
+      </div>
+      <p class="weui_tabbar_label">首  页</p>
+    </a>
+    <a href="javascript:;" onclick="return toPublishProduct();" class="weui_tabbar_item">
+      <div class="weui_tabbar_icon">
+        <img src="${resRoot}/member/img/f2.png" alt="">
+      </div>
+      <p class="weui_tabbar_label">发布库存</p>
+    </a>
+    <a href="javascript:;" onclick="return myProduct();" class="weui_tabbar_item">
+      <div class="weui_tabbar_icon">
+        <img src="${resRoot}/member/img/f3.png" alt="">
+      </div>
+      <p class="weui_tabbar_label">我的库存</p>
+    </a>
+    <a href="javascript:;" onclick="return toPublishService();" class="weui_tabbar_item">
+      <div class="weui_tabbar_icon">
+        <img src="${resRoot}/member/img/f4.png" alt="">
+      </div>
+      <p class="weui_tabbar_label">发布采购</p>
+    </a>
+    <a href="javascript:;" onclick="return myService();" class="weui_tabbar_item">
+      <div class="weui_tabbar_icon">
+        <img src="${resRoot}/member/img/f5.png" alt="">
+      </div>
+      <p class="weui_tabbar_label">我的采购</p>
+    </a>
+  </div>
+</div>
+
+<script type="text/javascript">
+function toSearch() {
+		window.location.href="${base}/member/search";
+	}
+	
+	function toPublishProduct() {
+		window.location.href="${base}/member/toPublishProduct";
+	}
+	
+	function myProduct() {
+		window.location.href="${base}/member/myProduct";
+	}
+	
+	function toPublishService() {
+		window.location.href="${base}/member/toPublishService";
+	}
+	
+	function myService() {
+		window.location.href="${base}/member/myService";
+	}
+$(document).ready(function(){
+    //弹出层
+    var height_body = $("document").height();
+    $("#c-weixin").click(function(){
+        $("#bubble-box").show();
+        $("#bubble-box").css('height',height_body + 'px')
+    })
+    $("#bubble-close").click(function(){
+        $("#bubble-box").hide();
+    })
+})
+</script>
+</body>
+</html>

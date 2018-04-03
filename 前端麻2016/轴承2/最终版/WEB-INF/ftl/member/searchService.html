@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>轴承采购-轴承库存网</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/weui/0.4.3/style/weui.min.css">
+	<link rel="stylesheet" href="//cdn.bootcss.com/jquery-weui/0.8.0/css/jquery-weui.min.css">
+	<link rel="stylesheet" href="${resRoot}/dist/docs-demos.css">
+    <link href="${resRoot}/member/css/Bearing_home_all-purchase.css" rel="stylesheet" type="text/css">
+    <link href="${resRoot}/member/css/cssRest.css" rel="stylesheet" type="text/css">
+    <script src="${resRoot}/member/js/rem.js"></script>
+    <script src="${resRoot}/member/js/jquery-1.8.2.min.js"></script>
+    <#include  "/member/count.html">
+    <style type="text/css">
+ .weui_tabbar img{
+	width: 1rem;
+	height: 1rem;
+	margin-left: -0.2rem;
+ }
+ .weui_tabbar p{
+ 	font-size: 0.36rem;
+ }
+ .weui_tabbar .weui_tabbar_item .cblue{
+ 	color:#069DCF;
+ }
+</style>
+</head>
+<body ontouchstart>
+<div class="weui_tab">
+  <div class="weui_tab_bd">
+    <section class="ads"><img src="${resRoot}/member/img/index_test.jpg?v=123" alt="广告位"></section>
+    <nav>
+        <ul>
+            <li><a href="${base}/member/search">库存信息</a></li>
+            <li><a href="${base}/member/searchService">采购信息</a></li>
+            <li><a href="${base}/member/contactUs">联系我们</a></li>
+        </ul>
+    </nav>
+    <section class="notice">
+        <ul id="sItem">
+        	<#list recommendList as bearingInfo>
+            <li>
+            	<a href="${base}/member/serviceDetial_${bearingInfo.serviceCode}" title="${bearingInfo.brand}/${bearingInfo.model}" ><img src="${resRoot}/member/img/news.png"><span>采购 <#if bearingInfo.brand?length + bearingInfo.model?length &gt; 15 ><#if bearingInfo.brand?length &gt; 15 >${bearingInfo.brand?substring(0,14)}...<#else>${bearingInfo.brand}/${bearingInfo.model?substring(0,(15-bearingInfo.brand?length))}...</#if><#else>${bearingInfo.brand}/${bearingInfo.model}</#if></span></a>
+               <!-- <a href="${base}/member/serviceDetial_${recommend.serviceCode}"><img src="${resRoot}/member/img/news.png"><span>求购 ${recommend.brand} / ${recommend.model}</span></a> --> 
+            </li>
+        	</#list>
+        </ul>
+    </section>
+    <section class="search">
+        <input type="text" class="search-box" id="model" name="model" value="${param.model}" placeholder="请输入型号搜索">
+        <input type="button" class="search-btn" onclick="search();" value="搜 索">
+    </section>
+    <section class="show-all">
+        <table class="show">
+            <tr><th>编号</th><th>型号</th><th>品牌</th><th>数量</th><th>详情</th></tr>
+            <#list result.datas as bearingService>
+		      <tr>
+		        <td>${result.pageSize * (result.pageNumber -1) + bearingService_index + 1}</td>
+		        <td>${bearingService.model}</td> 
+		        <td>${bearingService.brand}</td>
+		        <td>${bearingService.count}</td>
+		        <td><a href="${base}/member/serviceDetial_${bearingService.serviceCode}" title="点击查看详情">查看</a></td>
+		      </tr>
+	      </#list>
+        </table>
+        <div class="btns flex">
+            <#if result.pageCount &gt; 1 >
+		    	<#if result.pageNumber==1>
+		    	<button id="pre">上一页</button>
+		    	<#else>
+		      	<button onclick="previous();" id="pre" >上一页</button>
+		    	</#if>
+		    	<#if result.pageNumber==result.pageCount>
+		    	<button id="next">下一页</button>
+		    	<#else>
+		      	<button id="next" onclick="next();">下一页</button>
+		    	</#if>
+		   	</#if>
+        </div>
+    </section>
+</div>
+  <div class="weui_tabbar">
+    <a href="javascript:;" onclick="return toSearch();" class="weui_tabbar_item cblue">
+      <div class="weui_tabbar_icon">
+        <img src="${resRoot}/member/img/f11.png" alt="">
+      </div>
+      <p class="weui_tabbar_label">首  页</p>
+    </a>
+    <a href="javascript:;" onclick="return toPublishProduct();" class="weui_tabbar_item">
+      <div class="weui_tabbar_icon">
+        <img src="${resRoot}/member/img/f2.png" alt="">
+      </div>
+      <p class="weui_tabbar_label">发布库存</p>
+    </a>
+    <a href="javascript:;" onclick="return myProduct();" class="weui_tabbar_item">
+      <div class="weui_tabbar_icon">
+        <img src="${resRoot}/member/img/f3.png" alt="">
+      </div>
+      <p class="weui_tabbar_label">我的库存</p>
+    </a>
+    <a href="javascript:;" onclick="return toPublishService();" class="weui_tabbar_item">
+      <div class="weui_tabbar_icon">
+        <img src="${resRoot}/member/img/f4.png" alt="">
+      </div>
+      <p class="weui_tabbar_label">发布采购</p>
+    </a>
+    <a href="javascript:;" onclick="return myService();" class="weui_tabbar_item">
+      <div class="weui_tabbar_icon">
+        <img src="${resRoot}/member/img/f5.png" alt="">
+      </div>
+      <p class="weui_tabbar_label">我的采购</p>
+    </a>
+  </div>
+</div>
+
+
+<script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/jquery-weui/0.8.0/js/jquery-weui.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    var nums=$(".notice li").length;
+    var i = 1;
+    var speed=1000; 
+    if(nums > 1) {
+	    var d = setInterval(function(){
+	        var topValue='-'+1*i;
+	        $(".notice ul").animate({
+	            top:topValue+'rem'
+	        },speed)
+	
+	        i++;
+	
+	        if(i==nums){
+	            i=0;
+	            speed=1000;
+	        }else{
+	            speed=1000;
+	        }
+	    },2500)
+    }
+}) 
+/*  $(document).ready(function(){     
+    var status = false;    
+    $.fn.scrollQ = function(options){    
+        var defaults = {    
+            line:$(".notice li").length,    
+            scrollNum:1,    
+            scrollTime:2500  
+        }  
+        var options=jQuery.extend(defaults,options);  
+        var _self = this;  
+        return this.each(function(){    
+            $("li",this).each(function(){  
+                $(this).css("display","none");  
+            })  
+            $("li:lt("+options.line+")",this).each(function(){  
+                $(this).css("display","block");  
+            })  
+            function scroll() {  
+                for(i=0;i<options.scrollNum;i++) {  
+                    var start=$("li:first",_self);  
+                    start.fadeOut(100);  
+                    start.css("display","none");  
+                    start.appendTo(_self);  
+                    $("li:eq("+(options.line-1)+")",_self).each(function(){  
+                        $(this).fadeIn(500);  
+                        $(this).css("display","block");  
+                    })  
+                }  
+            }  
+            var timer;  
+            timer = setInterval(scroll,options.scrollTime);  
+            _self.bind("mouseover",function(){  
+                clearInterval(timer);  
+            });  
+            _self.bind("mouseout",function(){  
+                timer = setInterval(scroll,options.scrollTime);  
+            });  
+              
+        });  
+    }  
+}); 
+ */
+
+  	function next() {
+  		window.location.href="${base}/member/searchService?model=${param.model}&pageNumber=${result.pageNumber+1}";
+  	}
+  	
+  	function previous() {
+  		window.location.href="${base}/member/searchService?model=${param.model}&pageNumber=${result.pageNumber-1}";
+  	}
+  	
+  	function search() {
+  		var model = $("#model").val();
+  		window.location.href="${base}/member/searchService?model=" + model;
+  	}
+  	
+  	function toSearch() {
+  		window.location.href="${base}/member/search";
+  	}
+  	
+  	function toPublishProduct() {
+  		window.location.href="${base}/member/toPublishProduct";
+  	}
+  	
+  	function myProduct() {
+  		window.location.href="${base}/member/myProduct";
+  	}
+  	
+  	function toPublishService() {
+  		window.location.href="${base}/member/toPublishService";
+  	}
+  	
+  	function myService() {
+  		window.location.href="${base}/member/myService";
+  	}
+</script>
+</body>
+</html>

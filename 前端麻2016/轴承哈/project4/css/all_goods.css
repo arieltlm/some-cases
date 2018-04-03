@@ -1,0 +1,171 @@
+body,nav,dl,dt,dd,p,h1,h2,h3,h4,ul,ol,li,input,button,textarea,footer{margin:0;padding:0}
+body{font:16px/1.5 'Microsoft Yahei','Simsun';  color:#333;background:#fff;-webkit-text-size-adjust: none; min-width:320px;}
+h1,h2,h3,h4,h5,h6{font-size:100%}
+form{display:inline}
+ul,ol{list-style:none}
+a{text-decoration:none}
+a:hover, a:active, a:focus{color:#1c5aa2;text-decoration: none;}
+a:active{color:#aaa;}
+img{vertical-align:middle;border:0;-ms-interpolation-mode:bicubic;}
+button,input,select,textarea{font-size:100%; vertical-align:middle;outline:none;}
+textarea{resize:none}
+button,input[type="button"],input[type="reset"],input[type="submit"] {cursor:pointer;-webkit-appearance:button;-moz-appearance:button}
+input:focus:-moz-placeholder,input:focus::-webkit-input-placeholder {color:transparent}
+button::-moz-focus-inner,input::-moz-focus-inner { padding:0; border:0}
+table { border-collapse:collapse; border-spacing:0}
+.fl{float:left;}.fr{float:right;}.hide{display:none;}.show{display: block;}
+.ellipsis { white-space:nowrap; text-overflow:ellipsis; overflow:hidden}
+.break { word-break:break-all; word-wrap:break-word}
+header, footer, article, section, nav, menu{display: block;clear:both;}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.clearfix{overflow:hidden;_zoom:1;}
+
+body{
+    height: 100%;
+}
+header{
+    background-color: #2F2F2F;
+    height: 1.5rem;
+    font-weight: 100;
+    font-size: 0.5rem;
+    letter-spacing: 0.1rem;
+    text-align: center;
+    line-height: 1.5rem;
+    color: #fff
+}
+header .return{
+    position: absolute;
+    left: 0.2rem;
+    width: 2rem;
+    color: #ccc
+}
+.return img{
+    width: 0.6rem;
+    height: 0.6rem;
+}
+
+/**********************/
+.ads{
+    background-color: #efefef;
+    height: 3rem;
+    text-align: center;
+    line-height: 3rem;
+    font-size: 0.6rem;
+}
+.ads img{
+    width: 100%;
+    height: 100%;
+}
+/*************************/
+.search{
+    background-color: red;
+    width: 95%;
+    margin: 0.4rem auto;
+    text-align: center;
+    /*margin-top: 0.4rem;*/
+    position: relative;
+}
+.search input{
+    margin-bottom: 0.3rem;
+    float: left;
+    border: 1px solid #ccc;
+    border-radius: 0.2rem;
+    height: 1rem;
+    text-align: center;
+}
+.search .search-box{
+    width: 70%;
+}
+.search .search-btn{
+    background-color: #43ABD5;
+    width: 28%;
+    position: absolute;
+    right: 0;
+    color: #fff;
+}
+.search:before{
+    content: url("../img/search.png");
+    position: absolute;
+    left: 0.1rem;
+    top: 0.1rem;
+}
+/****************************/
+.show-all{
+    width: 95%;
+    margin: 0.3rem auto;
+    position: relative;
+}
+.show{
+    width: 100%;
+    text-align: center;
+    font-size: 0.4rem;
+    background: #FEFDF9;
+}
+
+.show tr td,.show tr th{
+    border: 1px solid #e0dba8;
+    height: 0.8rem;
+}
+.show tr th{
+    background: #FAF6D9;
+}
+.show-all tr th:nth-child(1),.show-all tr td:nth-child(1){
+    width: 2rem;
+}
+.show-all tr th:nth-child(2),.show-all tr td:nth-child(2){
+    width: 25%;
+}
+.show-all tr th:nth-child(3),.show-all tr td:nth-child(3){
+    width: 15%;
+}
+tr th:nth-child(4),tr td:nth-child(4){
+    width: 15%;
+}
+tr th:nth-child(5),tr td:nth-child(5){
+    width: 30%;
+}
+tr td:nth-child(5) span{
+    margin: auto 0.2rem;
+    color: #43ABD5;
+}
+
+button{
+    width: 45%;
+    height: 1rem;
+    margin: 0.3rem 0;
+    border-radius: 0.1rem;
+    border: 1px solid #000;
+    text-align: center;
+    line-height: 1rem;
+    background-color: #fff;
+}
+.btns{
+    /*position: fixed;
+    bottom: 0;
+    left:0;*/
+    width:100%;
+   display: flex;
+   justify-content: space-around; 
+   align-content: center;
+   height: 116px;
+}
+footer{
+    position: fixed;
+    bottom: 0;
+    left:0;
+    background-color: #F0F0F0;
+    height: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+}
+footer .foot{
+    margin-top: 0.2rem;
+    text-align: center;
+}
+
+footer img{
+    width: 0.8rem;
+    height: 0.9rem;
+}

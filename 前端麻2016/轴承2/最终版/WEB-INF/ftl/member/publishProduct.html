@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>发布库存</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=no">
+<!-- head 中 -->
+<link rel="stylesheet"
+	href="//cdn.bootcss.com/weui/0.4.3/style/weui.min.css">
+<link rel="stylesheet"
+	href="//cdn.bootcss.com/jquery-weui/0.8.0/css/jquery-weui.min.css">
+<link rel="stylesheet" href="${resRoot}/dist/docs-demos.css">
+<script src="${resRoot}/member/js/rem.js" type="text/javascript"></script>
+<#include  "/member/count.html">
+	<style type="text/css">
+ .weui_tabbar img{
+	width: 1rem;
+	height: 1rem;
+	margin-left: -0.2rem;
+ }
+ .weui_tabbar p{
+ 	font-size: 0.36rem;
+ }
+ .weui_tabbar .weui_tabbar_item .cblue{
+ 	color:#069DCF;
+ }
+</style>
+</head>
+<body ontouchstart>
+	
+<div class="weui_tab">
+  <div class="weui_tab_bd">
+  
+  
+  <input type="hidden" id="code" value="${bearingInfoDTO.code}">
+	<div class="weui_cells weui_cells_form">
+		<div class="weui_cell">
+			<div class="weui_cell_hd">
+				<label class="weui_label">型号 &nbsp; <font color="red" >*</font></label>
+			</div>
+			<div class="weui_cell_bd weui_cell_primary">
+				<input class="weui_input" type="text" id="model" value="${bearingInfoDTO.model}"
+					placeholder="请输入产品型号"/>
+			</div>
+		</div>
+		<div class="weui_cell">
+			<div class="weui_cell_hd">
+				<label class="weui_label">品牌 &nbsp;</label>
+			</div>
+				<div class="weui_cell_bd weui_cell_primary">
+				<input class="weui_input" type="text"
+					id="brand"
+				value="${bearingInfoDTO.brand}" placeholder="请输入品牌" />
+			</div>
+		</div>
+		<div class="weui_cell">
+			<div class="weui_cell_hd">
+				<label class="weui_label">数量 &nbsp; <font color="red" >*</font></label>
+			</div>
+				<div class="weui_cell_bd weui_cell_primary">
+				<input class="weui_input" type="number"
+					value="${bearingInfoDTO.count}" pattern="[0-9]*"
+					id="count"
+				value="${bearingInfoDTO.count}" placeholder="请输入库存"/>
+			</div>
+		</div>
+		<div class="weui_cell">
+			<div class="weui_cell_hd">
+				<label class="weui_label">单价 &nbsp;</label>
+			</div>
+				<div class="weui_cell_bd weui_cell_primary">
+				<input class="weui_input" type="number" id="price"
+					placeholder="请输入单价"  value="${bearingInfoDTO.price}"/>
+			</div>
+		</div>
+		<div class="weui_cell">
+			<div class="weui_cell_hd">
+				<label class="weui_label">图片</label>
+			</div>
+			<ul class="weui_uploader_files" id="weui_uploader_files">
+			<#list picUrlList as picUrl>
+				<li class="weui_uploader_file" onclick="delImg('${picUrl.imageName}',id);" id="imgUrl_${picUrl_index}" imgName="${picUrl.imageName}"  style="background-image:url(${picUrl.imageUrl})"></li>
+				<!-- <li class="weui_uploader_file" style="background-image:url(http://shp.qpic.cn/weixinsrc_pic/pScBR7sbqjOBJomcuvVJ6iacVrbMJaoJZkFUIq4nzQZUIqzTKziam7ibg/)"></li> -->
+			</#list>
+			</ul>
+			<div class="weui_uploader_input_wrp">
+            <input class="weui_uploader_input" type="file" name="fileFields" onchange="uploadImage(this,id);" id="fileFields" accept="image/jpg,image/jpeg,image/png,image/gif" multiple="">
+          </div>
+          <div class="weui_textarea_counter">
+					<span>图片1--3张</span>
+				</div>
+				<!-- <div class="weui_cell_bd weui_cell_primary">
+				<input type="file" multiple name="fileField" id="fileField"
+					class="file" size="28" onchange="uploadImage(this,id);" /> <#list
+				picUrlList as picUrl> <img src="${picUrl.imageUrl}"
+					onclick="delImg('',id);" style='width: 110px; height: 110px;'
+					id="imgUrl_${picUrl_index}" class='imgUrl'
+					imgname="${picUrl.imageName}" /> </#list>
+
+			</div> -->
+		</div>
+
+		<div class="weui_cell">
+				<div class="weui_cell_bd">
+				<label class="weui_label">备注</label>
+			</div>
+			<div class="weui_cell_bd weui_cell_primary">
+				<textarea id="detialRemark" class="weui_textarea" placeholder="请输入备注" rows="3">${bearingInfoDTO.detialRemark}</textarea>
+				<div class="weui_textarea_counter">
+					<span>0</span>/200
+				</div>
+			</div>
+		</div>
+
+		<!-- <div class="weui_cell">
+				<div class="weui_cell_bd weui_cell_primary">
+				<textarea id="detialRemark" class="weui_textarea" placeholder="请输入备注" rows="3">${bearingInfoDTO.detialRemark}</textarea>
+				<div class="weui_textarea_counter">
+					<span>0</span>/200
+				</div>
+			</div>
+		</div> -->
+	</div>
+	<div class="weui_cells_title">
+			发布联系信息录入
+	</div>
+
+	<div class="weui_cells weui_cells_form">
+		<div class="weui_cell">
+			<div class="weui_cell_hd">
+				<label class="weui_label">手机 &nbsp; <font color="red" >*</font></label>
+			</div>
+				<div class="weui_cell_bd weui_cell_primary">
+				<input class="weui_input" type="text" id="userPhone" value="${bearingUserDTO.userPhone}" placeholder="请输入手机号码"
+				maxlength="11" />
+			</div>
+		</div>
+		<div class="weui_cell">
+			<div class="weui_cell_hd">
+				<label class="weui_label">电话</label>
+			</div>
+				<div class="weui_cell_bd weui_cell_primary">
+				<input class="weui_input" type="text" id="userTel" value="${bearingUserDTO.userTel}" placeholder="请输入联系电话"
+				maxlength="12"/>
+			</div>
+		</div>
+		<div class="weui_cell">
+			<div class="weui_cell_hd">
+				<label class="weui_label">公司</label>
+			</div>
+				<div class="weui_cell_bd weui_cell_primary">
+				<input class="weui_input" type="text" id="userCompanyName" value="${bearingUserDTO.companyName}"
+				placeholder="请输入公司名称" maxlength="50"/>
+			</div>
+		</div>
+		<div class="weui_cell">
+			<div class="weui_cell_hd">
+				<label class="weui_label">微信</label>
+			</div>
+				<div class="weui_cell_bd weui_cell_primary">
+				<input class="weui_input" type="text" 
+					id="userWeixin"
+				value="${bearingUserDTO.userWeixin}" placeholder="请输入微信号"
+				maxlength="30"/>
+			</div>
+		</div>
+		<div class="weui_cell">
+			<div class="weui_cell_hd">
+				<label class="weui_label">QQ</label>
+			</div>
+				<div class="weui_cell_bd weui_cell_primary">
+				<input class="weui_input"  type="text" id="userQQ"
+				value="${bearingUserDTO.userQQ}" placeholder="请输入常用QQ号"
+				maxlength="20"/>
+			</div>
+		</div>
+	</div>
+	<div class="weui_btn_area" style="margin: 1.17647em 15px 1.3em;height:80px;">
+		<a class="weui_btn  weui_btn_primary"  href="javascript:"
+			id="showTooltips"  onclick="save();" >确定</a>
+	</div>
+  
+
+  </div>
+  <div class="weui_tabbar">
+    <a href="javascript:;" onclick="return toSearch();" class="weui_tabbar_item">
+      <div class="weui_tabbar_icon">
+        <img src="${resRoot}/member/img/f1.png" alt="">
+      </div>
+      <p class="weui_tabbar_label">首  页</p>
+    </a>
+    <a href="javascript:;" onclick="return toPublishProduct();" class="weui_tabbar_item cblue">
+      <div class="weui_tabbar_icon">
+        <img src="${resRoot}/member/img/f22.png" style="width: 0.8rem;height: 0.8rem;" alt="">
+      </div>
+      <p class="weui_tabbar_label">发布库存</p>
+    </a>
+    <a href="javascript:;" onclick="return myProduct();" class="weui_tabbar_item">
+      <div class="weui_tabbar_icon">
+        <img src="${resRoot}/member/img/f3.png"  alt="">
+      </div>
+      <p class="weui_tabbar_label">我的库存</p>
+    </a>
+    <a href="javascript:;" onclick="return toPublishService();" class="weui_tabbar_item">
+      <div class="weui_tabbar_icon">
+        <img src="${resRoot}/member/img/f4.png" alt="">
+      </div>
+      <p class="weui_tabbar_label">发布采购</p>
+    </a>
+    <a href="javascript:;" onclick="return myService();" class="weui_tabbar_item">
+      <div class="weui_tabbar_icon">
+        <img src="${resRoot}/member/img/f5.png" alt="">
+      </div>
+      <p class="weui_tabbar_label">我的采购</p>
+    </a>
+  </div>
+</div>
+
+
+
+</body>
+<!-- body 最后 -->
+<script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/jquery-weui/0.8.0/js/jquery-weui.min.js"></script>
+<!-- 如果使用了某些拓展插件还需要额外的JS -->
+<script src="//cdn.bootcss.com/jquery-weui/0.8.0/js/swiper.min.js"></script>
+<script src="//cdn.bootcss.com/jquery-weui/0.8.0/js/city-picker.min.js"></script>
+<script type="text/javascript" src="${resRoot}/js/ajaxfileupload.js"></script>
+<script src="${resRoot}/js/plugins/layer/layer.min.js"></script>
+<script type="text/javascript">
+	function toSearch() {
+		window.location.href="${base}/member/search";
+	}
+	
+	function toPublishProduct() {
+		window.location.href="${base}/member/toPublishProduct";
+	}
+	
+	function myProduct() {
+		window.location.href="${base}/member/myProduct";
+	}
+	
+	function toPublishService() {
+		window.location.href="${base}/member/toPublishService";
+	}
+	
+	function myService() {
+		window.location.href="${base}/member/myService";
+	}
+		function save() {
+			var brand = $("#brand").val();
+			var model = $("#model").val();
+			var count = $("#count").val();
+			var price = $("#price").val();
+			var userTel = $("#userTel").val();
+			var userPhone = $("#userPhone").val();
+			var detialRemark = $("#detialRemark").val();
+			var userCompanyName = $("#userCompanyName").val();
+			var userWeixin = $("#userWeixin").val();
+			var userQQ = $("#userQQ").val();
+			var code = $("#code").val();
+			var flag = true;
+			/* if (brand == "" || brand == null || brand == "undefined") {
+				flag = false;
+				alert("请输入品牌！");
+				return false;
+			} */
+			if (flag && (model == "" || model == null || model == "undefined")) {
+				flag = false;
+				alert("请输入型号！");
+				return false;
+			}
+			if (flag && (count == "" || count == null || count == "undefined")) {
+				flag = false;
+				alert("请输入库存！");
+				return false;
+			} else if (isNaN(count)) {
+				flag = false;
+				alert("库存必须是数字！");
+				return false;
+			}
+			if ((price != "" &&  price != null && price != "undefined") && isNaN(price)) {
+				flag = false;
+				alert("价格必须是数字！");
+				return false;
+			}
+			var myreg = /^(0|86|17951)?(13[0-9]|15[012356789]|17[0678]|18[0-9]|14[57])[0-9]{8}$/; 
+			if(!myreg.test(userPhone)){
+				flag = false;
+			    alert('请输入有效的手机号码！'); 
+			    return false; 
+			} 
+			if (flag
+					&& (userPhone == "" || userPhone == null || userPhone == "undefined")) {
+				flag = false;
+				alert("请输入手机号");
+				return false;
+			} else if (userPhone.length != 11) {
+				flag = false;
+				alert("请输入11位手机号！");
+				return false;
+			}
+
+			var picUrls = "";
+			$("[class=weui_uploader_file]").each(function() {
+				picUrls = picUrls + $(this).attr("imgName") + "#";
+			});
+			/* if(picUrls== "") {
+				flag = false;
+				alert("请选择上传图片！");
+				// return false;
+			} */
+			if (flag) {
+				$.ajax({
+					type : "post",
+					url : "${base}/member/publishProduct",
+					data : {
+						brand : brand,
+						model : model,
+						count : count,
+						price : price,
+						userTel : userTel,
+						userPhone : userPhone,
+						detialRemark : detialRemark,
+						userCompanyName : userCompanyName,
+						userWeixin : userWeixin,
+						userQQ : userQQ,
+						code : code,
+						picUrls : picUrls
+					},
+					dataType : "json",
+					async : false,
+					success : function(data) {
+						flag = data.message;
+						if (flag == 1) {
+							alert("保存成功！");
+							window.location.href = "${base}/member/myProduct";
+						} else if (flag == 2) {
+							layer.alert("数据错误，请完善数据！");
+						} else if (flag == 0) {
+							layer.alert("服务器异常！");
+						}  else if (flag == 4) {
+							layer.alert("请输入有效的手机号码！");
+						} else {
+							alert("数据不完整！");
+						}
+					}
+				});
+			} else {
+				return false;
+			}
+
+		}
+
+		function uploadImage(fileField, id) {
+			var filters = "jpg png bmp jpeg JPG PNG BMP JPEG";
+
+	        var val = $(fileField).val();
+	        var arr = val.split('.');
+	        if (filters.indexOf(arr[arr.length - 1]) < 0) {
+	            $(obj).val("");
+	            alert("请上传 " + filters + " 格式的图片", "提示");
+	            return false;
+	        }
+			
+		var n = 0
+		var files = document.getElementById(id).files;
+		$("[class=weui_uploader_file]").each(function(i) {
+			n = n + 1;
+		});
+		// n = n + files.length;
+		if ((n + files.length) > 3) {
+			layer.msg("最多上传3张图片！")
+			// return;
+		} else {
+			var file;
+			// var index = layer.load(1, {shade: false});
+	        	// file = files[i];
+	        	$.ajaxFileUpload({
+					type : "post",
+					url : "${base}/uploadImages.do",
+					data : {
+						fileFields : files
+					},
+					secureuri : false,
+					fileElementId : id,
+					dataType : "json",
+					async : false,
+					success : function(data) {
+						var imgStr = "";
+						for(var j=0;j < data.length;j++) {
+							var image = data[j];
+							imgStr = imgStr + "<li class='weui_uploader_file' onclick=delImg('"+image.imageName+"',id); id='imgUrl_" + n + "' imgName='" + image.imageName + "'  style='background-image:url(" + image.imageUrl + ")'></li>";
+							n= n + 1;
+						}
+						$("#weui_uploader_files").append(imgStr);
+						/* if (data != "") {
+						} */
+					},
+					error : function(data) {
+						alert("网络异常，请重试");
+					}
+				});
+			
+		}
+	}
+
+		function delImg(imagename, id) {
+			if (confirm("确认删除该图片吗？")) {
+				var imageName = $("#" + id).attr("imgname");
+				var img = "";
+				var code = $("#code").val();
+				$("#" + id).remove();
+				var picUrls = "";
+				$("[class=weui_uploader_file]").each(function() {
+					picUrls = picUrls + $(this).attr("imgName") + "#";
+				});
+				$.ajax({
+					type : "post",
+					url : "${base}/bearing/delImage.htm",
+					data : {
+						imageName : imageName,
+						img : picUrls,
+						code : code
+					},
+					dataType : "json",
+					async : false,
+					success : function(data) {
+						flag = data.message;
+						if (flag == 1) {
+
+						} else {
+							layer.alert("服务器异常！");
+						}
+					}
+				});
+			}
+		}
+		
+		/* $('input').bind('focus',function(){  
+            $('footer').css('position','static');  
+            //或者$('#viewport').height($(window).height()+'px');  
+        }).bind('blur',function(){  
+            $('footer').css({'position':'fixed','bottom':'0'});  
+            // $('#viewport').height('auto');  
+        });
+		$('textarea').bind('focus',function(){  
+            $('footer').css('position','static');  
+            //或者$('#viewport').height($(window).height()+'px');  
+        }).bind('blur',function(){  
+            $('footer').css({'position':'fixed','bottom':'0'});  
+            // $('#viewport').height('auto');  
+        }); */
+	</script>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <link href="./css/edit.css" type="text/css" rel="stylesheet">
+  <script src="./js/jquery.min.js"></script>
+  <script src="./js/layer/layer.js"></script>
+  
+ </head>
+ <body>
+ <p>adsssssssssssssssss</p>
+ <input type="button" value="编辑" onclick="edit();" />
+  <script type="text/javascript">
+  function edit() {
+	  		layer.open({
+    			type: 2,
+    			title: '嘉宾信息',
+				skin: 'demo-class',
+    			shadeClose: true,
+    			shade: 0.8,
+    			maxmin: true, //开启最大化最小化按钮
+    			area: ['893px', '600px'],
+    			content: 'alert.html'
+    		});
+  }
+  </script>
+ </body>
+</html>

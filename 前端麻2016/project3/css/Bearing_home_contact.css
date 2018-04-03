@@ -1,0 +1,160 @@
+body{
+    height: 100%;
+}
+main{
+    margin-bottom: 2rem;
+}
+/**********************/
+.ads img{
+    width: 100%;
+    height: 3rem;
+}
+/*************************/
+nav ul{
+    border-bottom: 1px solid #029CCF;
+    font-size: 0.35rem;
+}
+nav a{
+    color:#000;
+}
+nav li{
+    display:inline-block;
+    width:32.5%;
+    text-align: center;
+    padding:0.3rem 0;
+    margin:0;
+}
+nav li:nth-child(3){
+    background-color: #029CCF;
+    color:white;
+    border-right: 1.5px solid #029CCF;
+}
+/*************************/
+
+.show-all{
+    width: 95%;
+    margin: 0.5rem 0.4rem;
+    position: relative;
+}
+.show-all h1{
+    height: 2rem;
+    text-align: center;
+    line-height: 2rem;
+    font-size: 0.8rem;
+    font-weight: 100;
+    color: #029CCF;
+}
+
+.show{
+    width: 100%;
+    text-align: center;
+    font-size: 0.4rem;
+    font-weight: lighter;
+}
+
+.show tr td,.show tr th{
+    height: 1.2rem;
+    color: #93979c;
+}
+.show tr th{
+    color: #93979c;
+}
+.show-all tr td:nth-child(1){
+    width: 1rem;
+}
+.show-all tr td:nth-child(2){
+    width: 15%;
+    text-align: left;
+}
+.show-all tr td:nth-child(3){
+    width: 75%;
+    text-align: left;
+    color: #000;
+}
+/*============弹出层=============================*/
+#bubble-box{
+    background-color: rgba(0,0,0,0.2);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    display: none;
+}
+#bubble-box .qr-code{
+    background-color: #fff;
+    border-radius: 0.2rem;
+    width: 6rem;
+    height: 7rem;
+    position: absolute;
+    top: 3rem;
+    left: 2rem;
+    text-align: center;
+}
+.qr-code h3{
+    height: 1rem;
+    line-height: 1rem;
+    font-size: 0.4rem;
+}
+.qr-code img{
+    margin: 0.2rem auto;
+    width: 4rem;
+    height: 4rem;
+}
+.qr-code p{
+    font-size: 0.3rem;
+    margin-bottom: 1rem;
+}
+#bubble-close{
+    width: 1rem;
+    height: 1rem;
+}
+/**************/
+footer{
+    position: fixed;
+    bottom: 0;
+    left:0;
+    border-top:1px solid #ccc;
+    height: 2rem;
+    width: 100%;
+    background-color: #fff;
+    display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -moz-justify-content: space-between;
+    justify-content: space-between;
+    -moz-box-pack: justify;
+    -webkit-box-pack: justify;
+    box-pack: justify;
+    -moz-box-align: center; /*Firefox*/
+    -webkit-box-align: center; /*Safari,Opera,Chrome*/
+    box-align: center;
+    font-size: 0.35rem;
+}
+footer a{
+   color:#A7ABB1; 
+}
+footer div:first-child{
+    margin-left: 0.5rem;
+    color:#069DCF;
+}
+footer div:first-child a{
+    color:#069DCF;
+}
+footer div:last-child{
+    margin-right: 0.5rem;
+}
+
+footer .foot{
+    margin-top: 0.2rem;
+    text-align: center;
+}
+footer .foot img{
+    width: 1rem;
+    height: 1rem;
+}

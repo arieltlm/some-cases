@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>所有产品</title> 
+    <link href="css/Bearing_home_contact.css" rel="stylesheet" type="text/css">
+     <link href="css/cssRest.css" rel="stylesheet" type="text/css">
+    <script src="js/rem.js"></script>
+    <script src="js/jquery-1.8.2.min.js"></script>
+</head>
+<body>
+<main>
+<section class="ads"><img src="img/tu.png" alt="广告位"></section>
+    <nav>
+         <ul>
+            <li><a href="Bearing_home_all-stock.html">库存信息</a></li>
+            <li><a href="Bearing_home_all-purchase.html">采购信息</a></li>
+            <li><a href="Bearing_home_contact.html">联系信息</a></li>
+        </ul>
+    </nav>
+<div class="show-all">
+    <h1>温馨提示</h1>
+    <table class="show">
+        <tr><th></th><td colspan="2">如果您有任何疑问和要求，请及时联系我们!</td></tr>
+        <tr><td></td><td>电话：</td><td style="color:#029CCF">029-88888888</td></tr>
+        <tr><td></td><td>传真：</td><td>66666666</td></tr>
+        <tr><td></td><td>手机：</td><td>13991866666</td></tr>
+        <tr><td></td><td>Q Q：</td><td>53563333</td></tr>
+        <tr id="c-weixin" ><td></td><td>微信：</td><td>233333</td></tr>
+        <tr><td></td><td>地址：</td><td>西安市雁塔区</td></tr>
+    </table>
+</div>
+</main>
+
+<div id="bubble-box">
+    <div class="qr-code">
+        <h3>官方微信</h3>
+        <img src="img/code.jpg" alt="qr-code">
+        <p>长按识别二维码<br>添加好友，就可以聊天喽</p>
+        <img id="bubble-close" src="img/close.gif">
+    </div>
+</div>
+<footer>
+    <div class="foot"><a href="Bearing_home_all-purchase.html"><img src="img/f11.png" alt="home"><p>首  页</p></a></div>
+    <div class="foot"><a href=""><img src="img/f2.png" alt="publish stock"><p>发布库存</p></a></div>
+    <div class="foot"><a href="Bearing_my-stock.html"><img src="img/f3.png" alt="my stock"><p>我的库存</p></a></div>
+    <div class="foot"><a href=""><img src="img/f4.png" alt="release purchasing"><p>发布采购</p></a></div>
+    <div class="foot"><a href="Bearing_my-purchase.html"><img src="img/f5.png" alt="my purchasing"><p>我的采购</p></a></div>
+</footer>
+<script type="text/javascript">
+    $(document).ready(function(){
+    //弹出层
+    var height_body = $("document").height();
+    $("#c-weixin").click(function(){
+        $("#bubble-box").show();
+        $("#bubble-box").css('height',height_body + 'px')
+    })
+    $("#bubble-close").click(function(){
+        $("#bubble-box").hide();
+    })
+})
+</script>
+</body>
+</html>

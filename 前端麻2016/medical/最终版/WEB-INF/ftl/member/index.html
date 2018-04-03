@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>绑定手机号码</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="${resRoot}/member/css/common.css">
+	<link rel="stylesheet" href="${resRoot}/member/css/requirement.css">
+	<link rel="stylesheet"
+	href="//cdn.bootcss.com/weui/0.4.3/style/weui.min.css">
+<link rel="stylesheet"
+	href="//cdn.bootcss.com/jquery-weui/0.8.0/css/jquery-weui.min.css">
+<link rel="stylesheet" href="${resRoot}/dist/docs-demos.css">
+	<script src="${resRoot}/member/js/rem.js" type="text/javascript"></script>
+<#include  "/member/count.html">
+	
+</head>
+<body>
+
+<input type="hidden" id="code" value="${bearingInfoDTO.code}">
+	<div class="weui_cells weui_cells_form">
+		<div class="weui_cell">
+			<div class="weui_cell_hd">
+				<label class="weui_label">手机号码</label>
+			</div>
+			<div class="weui_cell_bd weui_cell_primary">
+				<input class="weui_input" type="text" id="userPhone"  value="${bearingInfoDTO.model}"
+					placeholder="请输入您的手机号"/>
+			</div>
+		</div>
+		</div>
+<div class="weui_btn_area" style="margin: 1.17647em 15px 1.3em;height:60px;">
+		<a class="weui_btn  weui_btn_primary"  href="javascript:"
+			id="showTooltips"  onclick="save();" >去绑定</a>
+</div>
+
+
+
+	<!-- <p class="h_r"></p>
+	<section class="req_input">
+		<input type="hidden" id="code" value="${bearingInfoDTO.code}" >
+		<p><label>手机号码<span>*</span></label><input type="text" id="userPhone" value="" maxlength="11"  placeholder="请输入您的手机号"></p>
+	</section>
+	<section class="btn_box">
+		<p class="s_btn"></p>
+		<button onclick="save();" type="button" style="cursor: pointer;" class="subtn" >去绑定</button>
+	</section> -->
+	
+	    <script src="${resRoot}/js/jquery.min.js"></script>
+	    
+	    <!-- body 最后 -->
+<script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/jquery-weui/0.8.0/js/jquery-weui.min.js"></script>
+<!-- 如果使用了某些拓展插件还需要额外的JS -->
+<script src="//cdn.bootcss.com/jquery-weui/0.8.0/js/swiper.min.js"></script>
+<script src="//cdn.bootcss.com/jquery-weui/0.8.0/js/city-picker.min.js"></script>
+	<script type="text/javascript">
+    	function save() {
+    		var flag= true;
+    		var userPhone=$("#userPhone").val();
+    		if(userPhone == "" || userPhone == null || userPhone=="undefined") {
+    			flag = false;
+    			alert("请输入手机号");
+    			return false;
+    		} else if(userPhone.length != 11) {
+    			flag = false;
+    			alert("请输入11位手机号！");
+    			return false;
+    		}
+    		
+    		if(flag) {
+	    		$.ajax({
+					type : "post",
+					url : "${base}/member/saveTel",
+					data : {
+						userPhone : userPhone
+					},
+					dataType : "json",
+					async : false,
+					success : function(data) {
+						flag  = data.message;
+						if(flag == 1) {
+							alert("绑定成功！");
+							window.location.href="${base}/member/search";
+						} else if(flag == 2) {
+							layer.alert("数据错误，请完善数据！");
+						} else if(flag == 0){
+							layer.alert("服务器异常！");
+						} else {
+							alert("数据不完整！");
+						}
+					}
+				});
+    		} else {
+    			return false;
+    		}
+    		
+    	}
+    	
+    	
+    	</script>
+</body>
+</html>

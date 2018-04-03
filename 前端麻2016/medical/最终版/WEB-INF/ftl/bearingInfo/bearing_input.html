@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="renderer" content="webkit">
+
+    <title><#if bearingInfoDTO?exists && bearingInfoDTO != null>更新<#else>新增</#if>轴承信息</title>
+
+    <link href="${resRoot}/css/bootstrap.min14ed.css" rel="stylesheet">
+    <link href="${resRoot}/css/font-awesome.min93e3.css" rel="stylesheet">
+    <link href="${resRoot}/css/plugins/iCheck/custom.css" rel="stylesheet">
+
+    <link href="${resRoot}/css/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="${resRoot}/css/plugins/webuploader/webuploader.css">
+    <link rel="stylesheet" type="text/css" href="${resRoot}/css/demo/webuploader-demo.min.css">
+    <link href="${resRoot}/css/style.min862f.css" rel="stylesheet">
+    
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5><#if bearingInfoDTO?exists && bearingInfoDTO != null>更新<#else>新增</#if>轴承信息</h5>
+<#if bearingInfoDTO?exists && bearingInfoDTO != null>
+<input type="hidden" id="id" value="${bearingInfoDTO.id}" />
+<input type="hidden" id="code" value="${bearingInfoDTO.code}" />
+<#else><input type="hidden" id="id" value="0" /></#if>
+                        </div>
+                        <div class="ibox-content" >
+                        <form method="get" class="form-horizontal">
+                           <div class="form-group">
+                                <label class="col-sm-2 control-label">品牌：</label>
+                                <div class="col-sm-10">
+                                    <input type="text"  id="brand" value="${bearingInfoDTO.brand}" maxlength="50" class="form-control"> <span class="help-block m-b-none"></span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">型号：</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="model" value="${bearingInfoDTO.model}" maxlength="50"  class="form-control"> <span class="help-block m-b-none"></span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">产品库存：</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="count" value="${bearingInfoDTO.count}" maxlength="10"  class="form-control"> <span class="help-block m-b-none"></span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">产品价格：</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="price" value="${bearingInfoDTO.price}" maxlength="20"  class="form-control"> <span class="help-block m-b-none"></span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">发布人电话：</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="userTel" value="${bearingInfoDTO.userTel}" maxlength="11"   class="form-control"> <span class="help-block m-b-none"></span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">成交数量：</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="saleCount" value="${bearingInfoDTO.saleCount}" maxlength="10"  class="form-control"> <span class="help-block m-b-none"></span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">详情备注：</label>
+                                <div class="col-sm-10">
+                                    <textarea  type="text" id="detialRemark" class="form-control" maxlength="500"  >${bearingInfoDTO.detialRemark}</textarea> <span class="help-block m-b-none"></span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">是否推荐：</label>
+                                <div class="col-sm-10">
+                               			<select class="form-control" id="isRecommend" name="isRecommend" >
+							            	<option value="0" <#if bearingInfoDTO.isRecommend=="0">selected="true"</#if> >未推荐</option>
+							            	<option value="1" <#if bearingInfoDTO.isRecommend=="1">selected="true"</#if> >推荐</option>
+							            </select>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="ibox-content" >
+								<label class="col-sm-2 control-label">轴承图片：</label>
+								<div class="col-sm-10">
+								<input type="file" name="fileField" id="fileField" class="file" size="28" onchange="uploadImage(this,id);"  />
+								<span class="help-block m-b-none">图片大小为300px* 300px</span>
+								</div>
+								<!-- onchange="uploadImage(this,id);"  ${base}/uploadImage.htm-->
+		                            <div class="dropzone-previews">
+		                            	<#list picUrlList as picUrl>
+		                            	<a href="javascript:void(0);" onclick="delImg('${picUrl.imageName}', id);" id="imag_${picUrl_index}">
+		                            	<img data-dz-thumbnail='' alt="点击删除" title="点击删除" style="width:110px;height:110px;" id='imgUrl' imagename="${picUrl.imageName}" imgUrl='${picUrl.imageName}'  src='${picUrl.imageUrl}' />
+		                            	</a>
+		                            	</#list>
+		                            </div>
+		                            <!-- <button type="submit" class="btn btn-primary pull-right">提交</button> -->
+                        	</div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="col-md-12">
+								<div class="col-sm-12 col-sm-offset-3">
+								    <button class="btn btn-primary" onclick="save();" type="button">保存</button>
+								    <#if bearingInfoDTO.isRecommend=="0">
+									    <button class="btn btn-primary" onclick="isRecommends('${bearingInfoDTO.id}','1');" type="button">推荐</button>
+									<#else>
+										<button class="btn btn-primary" onclick="isRecommends('${bearingInfoDTO.id}','0');" type="button">不推荐</button>
+									</#if>
+								    <button class="btn btn-white" onclick="window.location.href = '${base}/bearing/list.htm'" type="button">返回</button>
+								</div>
+							</div>
+						<div class="hr-line-dashed"></div>
+							</form>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script src="${resRoot}/js/jquery.min.js"></script>
+    <script src="${resRoot}/js/bootstrap.min.js"></script>
+    <script src="${resRoot}/js/plugins/footable/footable.all.min.js"></script>
+    <script src="${resRoot}/js/content.min.js"></script>
+    <script src="${resRoot}/js/plugins/layer/layer.min.js"></script>
+    <script type="text/javascript" src="${resRoot}/js/ajaxfileupload.js"></script>
+    <script src="js/plugins/webuploader/webuploader.min.js"></script>
+    <script src="js/demo/webuploader-demo.min.js"></script>
+    <!-- <script>
+        $(document).ready(function(){$(".footable").footable();$(".footable2").footable()});
+    </script> -->
+    <script type="text/javascript">
+    	function save() {
+    		var id = $("#id").val();
+    		var brand = $("#brand").val();
+    		var model=$("#model").val();
+    		var size=$("#size").val();
+    		var count=$("#count").val();
+    		var price=$("#price").val();
+    		var userTel=$("#userTel").val();
+    		var saleCount=$("#saleCount").val();
+    		var detialRemark=$("#detialRemark").val();
+    		var companyName=$("#companyName").val();
+    		var weixinNo=$("#weixinNo").val();
+    		var qqNo=$("#qqNo").val();
+    		var code=$("#code").val();
+    		var isRecommend = $("#isRecommend").val();
+    		var img = "";
+    		$("[id=imgUrl]").each(function(){
+    			img = img + $(this).attr("imgUrl")  +  "#";
+   			}); 
+    		$.ajax({
+				type : "post",
+				url : "${base}/bearing/save.htm",
+				data : {
+					id : id,
+					brand : brand,
+					model : model,
+					size : size,
+					count : count,
+					price : price,
+					userTel : userTel,
+					saleCount : saleCount,
+					detialRemark : detialRemark,
+					companyName : companyName,
+					weixinNo : weixinNo,
+					qqNo : qqNo,
+					code : code,
+					img : img,
+					isRecommend : isRecommend
+				},
+				dataType : "json",
+				async : false,
+				success : function(data) {
+					flag  = data.message;
+					if(flag == 1) {
+						alert("保存成功！");
+						window.location.href="${base}/bearing/list.htm";
+					} else if(flag == 2) {
+						layer.alert("数据错误，请完善数据！");
+					} else if(flag == 0){
+						layer.alert("服务器异常！");
+					}
+				}
+			});
+    		
+    	}
+    	
+    	function uploadImage(fileField,id) {
+    		var n = 0
+    		$("[id=imgUrl]").each(function(i){
+    			n = n + 1;
+   			});
+    		if(n >=3) {
+	    		alert("最多上传3张图片！")
+    			return;
+    		} else {
+    			var index = layer.load(1, {shade: false});
+				$.ajaxFileUpload({
+					type : "post",
+					url : "${base}/uploadImage.do",
+					data : {
+						fileField : fileField
+					},
+					secureuri: false,
+					fileElementId : id,
+					dataType: "json", 
+					async : false,
+					success : function(data) {
+						if(data != "") {
+						$(".dropzone-previews").append("<a href='javascript:void(0);' onclick='delImg(" + data.imageName + ", id);'  id='imag_" + (n+1)  + "' ><img data-dz-thumbnail='' style='width:110px;height:110px;' title='点击删除' id='imgUrl' " + "imageName='" + data.imageName +  "' imgUrl='" + data.imageName + "' src='"+ data.imageUrl +"' /></a>");
+						}
+					},
+					error : function(data) {
+				          alert("网络异常，请重试");
+				    }
+				});
+    		}
+		}
+    	
+    	function delImg (imagename, id) {
+    		if(confirm("确认删除该图片吗？")){
+	    		var imageName = imagename;
+	    		var img = "";
+	    		var code = $("#code").val();
+	    		$("#" + id).remove();
+	    		$("[id=imgUrl]").each(function(){
+	    			img = img + $(this).attr("imgUrl")  +  "#";
+	   			}); 
+	    		$.ajax({
+					type : "post",
+					url : "${base}/bearing/delImage.htm",
+					data : {
+						imageName : imageName,
+						img : img,
+						code : code
+					},
+					dataType : "json",
+					async : false,
+					success : function(data) {
+						flag  = data.message;
+						if(flag == 1) {
+				    		
+						} else {
+							layer.alert("服务器异常！");
+						}
+					}
+				});
+    		}
+    	}
+    	
+    	
+    	function isRecommends(id, isRecommend) {
+    	   	 if(confirm("确认修改该条轴承推荐信息吗？")){
+    	       	$.ajax({
+    					type : "post",
+    					url : "${base}/bearing/isRecommend.htm",
+    					data : {
+    						id : id,
+    						isRecommend : isRecommend
+    					},
+    					dataType : "json",
+    					async : false,
+    					success : function(data) {
+    						flag  = data.message;
+    						if(flag == 1) {
+    				    		alert("修改推荐状态成功！");
+    				    		window.location.reload(); // window.location.href = "${base}/bearingService/show.htm";
+    						} else {
+    							layer.alert("服务器异常！");
+    						}
+    					}
+    				});
+    	   	 }
+    	   }
+    </script>
+</body>
+
+
+</html>

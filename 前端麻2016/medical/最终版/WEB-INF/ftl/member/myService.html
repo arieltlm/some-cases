@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的采购-轴承库存网</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link href="${resRoot}/member/css/Bearing_my-purchase.css" rel="stylesheet" type="text/css">
+    <link href="${resRoot}/member/css/cssRest.css" rel="stylesheet" type="text/css">
+     <link rel="stylesheet" href="//cdn.bootcss.com/weui/0.4.3/style/weui.min.css">
+	<link rel="stylesheet" href="//cdn.bootcss.com/jquery-weui/0.8.0/css/jquery-weui.min.css">
+	<link rel="stylesheet" href="${resRoot}/dist/docs-demos.css">
+    <script src="${resRoot}/member/js/rem.js"></script>
+    <#include  "/member/count.html">
+    <style type="text/css">
+ .weui_tabbar img{
+	width: 1rem;
+	height: 1rem;
+	margin-left: -0.2rem;
+ }
+ .weui_tabbar p{
+ 	font-size: 0.36rem;
+ }
+ .weui_tabbar .weui_tabbar_item .cblue{
+ 	color:#069DCF;
+ }
+</style>
+</head>
+<body ontouchstart>
+<div class="weui_tab">
+  <div class="weui_tab_bd">
+  
+    <div class="show-all">
+        <table class="show">
+            <tr><th>编号</th><th>型号</th><th>品牌</th><th>数量</th><th>详情</th></tr>
+            <#list result.datas as bearingService>
+	        <tr>
+	        <td>${result.pageSize * (result.pageNumber -1) + bearingService_index + 1}</td>
+	        <td><a href="${base}/member/serviceDetial_${bearingService.serviceCode}" title="点击查看详情">${bearingService.model}</a></td>
+	        <td>${bearingService.brand}</td>
+	        <td>${bearingService.count}</td>
+	        <td><span><a href="${base}/member/toPublishService?serviceCode=${bearingService.serviceCode}">编辑</a></span><span><a href="javascript:void(0);" onclick="del('${bearingService.id}');">删除</a></span></td></tr>
+	        </#list>
+        </table>
+		    <div class="btns flex">
+         <#if result.pageCount &gt; 1 >
+		    	<#if result.pageNumber==1>
+		    	<button id="pre">上一页</button>
+		    	<#else>
+		      	<button onclick="previous();" id="pre" >上一页</button>
+		    	</#if>
+		    	<#if result.pageNumber==result.pageCount>
+		    	<button id="next">下一页</button>
+		    	<#else>
+		      	<button id="next" onclick="next();">下一页</button>
+		    	</#if>
+	    	</#if>
+	        </div>
+        <div class="bottom">
+             <span>手机：${bearingUserDTO.userPhone}</span>
+	        <span>微信：${bearingUserDTO.userWeixin}</span></br>
+	        <span>Q Q：${bearingUserDTO.userQQ}</span>
+        </div>
+    </div>
+    
+</div>
+  <div class="weui_tabbar">
+    <a href="javascript:;" onclick="return toSearch();" class="weui_tabbar_item">
+      <div class="weui_tabbar_icon">
+        <img src="${resRoot}/member/img/f1.png" alt="">
+      </div>
+      <p class="weui_tabbar_label">首  页</p>
+    </a>
+    <a href="javascript:;" onclick="return toPublishProduct();" class="weui_tabbar_item">
+      <div class="weui_tabbar_icon">
+        <img src="${resRoot}/member/img/f2.png" alt="">
+      </div>
+      <p class="weui_tabbar_label">发布库存</p>
+    </a>
+    <a href="javascript:;" onclick="return myProduct();" class="weui_tabbar_item">
+      <div class="weui_tabbar_icon">
+        <img src="${resRoot}/member/img/f3.png" alt="">
+      </div>
+      <p class="weui_tabbar_label">我的库存</p>
+    </a>
+    <a href="javascript:;" onclick="return toPublishService();" class="weui_tabbar_item">
+      <div class="weui_tabbar_icon">
+        <img src="${resRoot}/member/img/f4.png" alt="">
+      </div>
+      <p class="weui_tabbar_label">发布采购</p>
+    </a>
+    <a href="javascript:;" onclick="return myService();" class="weui_tabbar_item cblue">
+      <div class="weui_tabbar_icon">
+        <img src="${resRoot}/member/img/f55.png" alt="">
+      </div>
+      <p class="weui_tabbar_label">我的采购</p>
+    </a>
+  </div>
+</div>
+<script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/jquery-weui/0.8.0/js/jquery-weui.min.js"></script>
+<script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript">
+  	function next() {
+  		window.location.href="${base}/member/myService?pageNumber=${result.pageNumber+1}";
+  	}
+  	
+  	function previous() {
+  		window.location.href="${base}/member/myService?pageNumber=${result.pageNumber-1}";
+  	}
+  	
+  	function toSearch() {
+  		window.location.href="${base}/member/search";
+  	}
+  	
+  	function toPublishProduct() {
+  		window.location.href="${base}/member/toPublishProduct";
+  	}
+  	
+  	function myProduct() {
+  		window.location.href="${base}/member/myProduct";
+  	}
+  	
+  	function toPublishService() {
+  		window.location.href="${base}/member/toPublishService";
+  	}
+  	
+  	function myService() {
+  		window.location.href="${base}/member/myService";
+  	}
+  	
+  	function del(id) {
+   	 if(confirm("确认删除该条轴承信息吗？")){
+       	$.ajax({
+				type : "post",
+				url : "${base}/member/delService.htm",
+				data : {
+					id : id
+				},
+				dataType : "json",
+				async : false,
+				success : function(data) {
+					flag  = data.message;
+					if(flag == 1) {
+			    		alert("删除成功！");
+			    		window.location.href = "${base}/member/myService";
+					} else {
+						layer.alert("服务器异常！");
+					}
+				}
+			});
+   	 }
+   }
+  </script>
+</body>
+</html>

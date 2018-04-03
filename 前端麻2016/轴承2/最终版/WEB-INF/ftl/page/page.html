@@ -1,0 +1,59 @@
+<#if result.datas?exists && result.pageCount &gt; 1>
+<div class="row">
+	<div class="col-sm-6">
+		<div id="editable_info" class="dataTables_info" role="alert"
+			aria-live="polite" aria-relevant="all">显示 ${(result.pageNumber -1) * result.pageSize + 1} 到 ${result.totalCount} 项，共 ${result.totalDataCount} 项</div>
+	</div>
+	<div class="col-sm-6">
+		<div id="editable_paginate"
+			class="dataTables_paginate paging_simple_numbers">
+			<ul class="pagination">
+				<li id="editable_previous" class="paginate_button previous<#if result.pageNumber==1> disabled</#if>"
+					aria-controls="editable" tabindex="0"><a href="${pageUrl}&pageNumber=1">首页</a></li>
+				<li id="editable_previous" class="paginate_button previous<#if result.pageNumber==1> disabled</#if>"
+					aria-controls="editable" tabindex="0"><a <#if result.pageNumber==1>href="#"<#else>href="${pageUrl}&pageNumber=${result.pageNumber -1}"</#if> >上一页</a></li>
+					<#if result.pageCount &lt; 6 >
+						<#list 1..result.pageCount as index >
+							<li class="paginate_button <#if result.pageNumber == index> active</#if>" aria-controls="editable"
+								tabindex="0"><a href="${pageUrl}&pageNumber=${index}">${index}</a></li>
+						</#list>
+					<#elseif result.pageNumber &lt; 6 && result.pageCount &gt; 6>
+						<#list 1..6 as index >
+							<li class="paginate_button <#if result.pageNumber == index> active</#if>" aria-controls="editable"
+								tabindex="0"><a href="${pageUrl}&pageNumber=${index}">${index}</a></li>
+						</#list>
+						<li class="paginate_button" aria-controls="editable" tabindex="0"><a href="#">...</a></li>
+						<li class="paginate_button" aria-controls="editable"
+							tabindex="0"><a href="${pageUrl}&pageNumber=${result.pageCount}">${result.pageCount}</a></li>
+					<#elseif result.pageNumber &gt; 6>
+						<li class="paginate_button" aria-controls="editable" tabindex="0"><a href="${pageUrl}&pageNumber=1">1</a></li>
+						<li class="paginate_button" aria-controls="editable" tabindex="0"><a href="#">...</a></li>
+						<#list (result.pageNumber-3)..result.pageNumber as index >
+							<li class="paginate_button <#if result.pageNumber == index> active</#if>" aria-controls="editable"
+								tabindex="0"><a href="${pageUrl}&pageNumber=${index}">${index}</a></li>
+						</#list>
+						<#if result.pageNumber &lt; result.pageCount>
+						<li class="paginate_button" aria-controls="editable" tabindex="0"><a href="#">...</a></li>
+						<li class="paginate_button" aria-controls="editable" tabindex="0"><a href="${pageUrl}&pageNumber=${result.pageCount}">${result.pageCount}</a></li>
+						</#if>
+					<#else>
+							<li class="paginate_button" aria-controls="editable" tabindex="0"><a href="${pageUrl}&pageNumber=1">1</a></li>
+							<li class="paginate_button" aria-controls="editable" tabindex="0"><a href="#">...</a></li>
+							<#list (result.pageNumber-3)..result.pageNumber as index >
+								<li class="paginate_button <#if result.pageNumber == index> active</#if>" aria-controls="editable"
+									tabindex="0"><a href="#">${index}</a></li>
+							</#list>
+							<#if result.pageNumber &lt; result.pageCount>
+							<li class="paginate_button" aria-controls="editable" tabindex="0"><a href="#">...</a></li>
+							<li class="paginate_button" aria-controls="editable" tabindex="0"><a href="${pageUrl}&pageNumber=${result.pageCount}">${result.pageCount}</a></li>
+							</#if>
+					</#if>
+				<li id="editable_next" class="paginate_button next<#if result.pageNumber==result.pageCount> disabled</#if>"
+					aria-controls="editable" tabindex="0"><a href="<#if result.pageNumber==result.pageCount>#<#else>${pageUrl}&pageNumber=${result.pageNumber + 1}</#if>">下一页</a></li>
+				<li id="editable_next" class="paginate_button next<#if result.pageNumber==result.pageCount> disabled</#if>"
+					aria-controls="editable" tabindex="0"><a href="${pageUrl}&pageNumber=${result.pageCount}">末页</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+</#if>

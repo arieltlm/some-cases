@@ -1,0 +1,124 @@
+main{
+    margin-bottom: 2rem;
+}
+.show-all{
+    width: 95%;
+    margin: 0.3rem auto;
+    position: relative;
+
+}
+.show{
+    width: 100%;
+    text-align: center;
+    font-size: 0.4rem;
+    background: #FEFDF9;
+}
+
+.show tr td,.show tr th{
+    border: 1px solid #e0dba8;
+    height: 1rem;
+}
+.show tr th{
+    background: #FAF6D9;
+}
+.show-all tr th:nth-child(1),.show-all tr td:nth-child(1){
+    width: 2rem;
+}
+.show-all tr th:nth-child(2),.show-all tr td:nth-child(2){
+    width: 25%;
+}
+.show-all tr th:nth-child(3),.show-all tr td:nth-child(3){
+    width: 15%;
+}
+tr th:nth-child(4),tr td:nth-child(4){
+    width: 15%;
+}
+tr th:nth-child(5),tr td:nth-child(5){
+    width: 30%;
+}
+tr td:nth-child(5) span{
+    margin: auto 0.2rem;
+    color: #43ABD5;
+}
+
+button{
+    width: 45%;
+    height: 1rem;
+    margin: 0.3rem 0;
+    border-radius: 0.1rem;
+    border: 1px solid #000;
+    text-align: center;
+    line-height: 1rem;
+    background-color: #fff;
+}
+#pre{
+    float: left;
+}
+#next{
+    float: right;
+}
+
+.bottom{
+    background: #f7f7f7;
+    margin-top: 1.6rem;
+    margin-left: 0.3rem;
+    height: 2rem;
+}
+.bottom span{
+    display: inline-block;
+    line-height: 1rem;
+    font-size: 0.4rem;
+    width:45%;
+}
+.bottom span:nth-child(2){
+    float: right;
+    padding-left: 0.3rem;
+}
+/********************************/
+footer{
+    position: fixed;
+    bottom: 0;
+    left:0;
+    border-top:1px solid #ccc;
+    height: 2rem;
+    width: 100%;
+    background-color: #fff;
+    display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -moz-justify-content: space-between;
+    justify-content: space-between;
+    -moz-box-pack: justify;
+    -webkit-box-pack: justify;
+    box-pack: justify;
+    -moz-box-align: center; /*Firefox*/
+    -webkit-box-align: center; /*Safari,Opera,Chrome*/
+    box-align: center;
+    font-size: 0.35rem;
+}
+footer a{
+   color:#A7ABB1; 
+}
+footer div:first-child{
+    margin-left: 0.5rem;  
+}
+footer div:last-child{
+    margin-right: 0.5rem;
+    color:#069DCF;
+}
+footer div:last-child a{
+    color:#069DCF;
+}
+
+footer .foot{
+    margin-top: 0.2rem;
+    text-align: center;
+}
+footer .foot img{
+    width: 1rem;
+    height: 1rem;
+}
