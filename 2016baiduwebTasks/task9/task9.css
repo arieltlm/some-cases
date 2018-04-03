@@ -1,0 +1,576 @@
+*{
+    padding:0;
+    margin:0;
+}
+body{
+    font-size:15px;
+    font-family:"Microsoft Yahei",Sans-serif;
+}
+.container{
+	 width:100%;
+	 min-width: 1400px;
+	 overflow: hidden;
+}
+/*****header********************************/
+header{
+	width: 100%;
+	height:60px;
+	background-color: #228AC1;
+	color:#fff;
+}
+header>img{
+	margin-left: 60px;
+	margin-top: 5px;
+}
+.header-right{
+	float: right;
+	display: flex;
+	margin: 15px 60px auto auto;
+}
+.header-right input{
+	width: 340px;
+	height: 28px;
+	border-radius: 24px;
+	border-color: #228AC1;
+}
+.header-right form img{
+	position: relative;
+	top:5px;
+	left: 40px;
+}
+.header-right span{
+	display: inline-block;
+	margin-top: 5px;
+}
+/*******content*************************************/
+.content{
+	width:1400px;
+	background-color: #EDEDED;
+	display: flex;
+}
+/********aside**************************************/
+aside{
+	width: 300px;
+    height: 1300px;
+    background: #2B2E3D;
+    color: #6E8096;
+    font-family: 黑体;
+}
+/*********************************/
+.s-head{
+    width: 70%;
+    margin: 0 auto;
+    padding: 20px;
+    overflow: hidden;
+}
+.tx{
+    width: 72px;
+    height: 72px;
+    background: #BAB9BE;
+    border-radius: 60px;
+    margin-right: 0;
+    float: left;
+}
+.tx img{
+    margin: 2px;
+    width: 60px;
+    height: 60px;
+    line-height: 0;
+    display: inline-block;
+    border-radius: 50%;
+    border: 4px solid #2B2E3D;
+}
+h4{
+    margin-left: 100px;
+    line-height: 72px;
+    color: #EDEDED;
+}
+
+/*********  s-head(收藏/粉丝)  *********/
+.s-head span{
+    float: left;
+    display: block;
+    margin: 0 20px;
+    text-align: center;
+    color:#6E8094;
+}
+
+/**********  个人报表及之后  *************/
+.grbb{
+    width: 100%;
+    background: #383E4E;
+    line-height: 30px;
+}
+
+.l-head:hover{
+    color:#EDEDED;
+}
+
+.line-wrap{
+    text-indent: 3em;
+    line-height: 50px;
+}
+
+dt{
+    text-indent: 4em;
+}
+dd{
+    text-indent: 7em;
+}
+
+/******** 共有样式 *******/
+.grbb .l-head, .wj2, .wd1{color:#EDEDED;}
+.s-head span:hover, dt:hover, dd:hover{ color: #fff; cursor:pointer;}
+
+
+/*********first*****************************************/
+.content-item{
+	width: 1100px;
+}
+.content-item .p-first{
+	background-color: #fff;
+	padding: 10px 0 10px 25px;
+	color: #B0B0B0;
+}
+.content-item .p-first span {
+	margin:0 5px;
+}
+#w1{
+	color:#228AC1;
+}
+/*********first-item*************/
+.first-item{
+	height:100px;
+	width:1000px;
+	margin:18px auto;
+	background-color: #fff;
+	border: 1px solid #C6CACD;
+	display: flex;
+	justify-content:center;
+	align-items:center;
+}
+.first-item span{
+	display:inline-block;
+	margin-right: 10px;
+	color:#B0B0B0;
+
+}
+.first-item section{
+	margin:0 10px;
+}
+.first-row{
+	margin-bottom:10px;
+}
+.first-area{
+	position: relative;
+	top:-10px;
+	left:0;
+}
+#selectors,#time,#ren{
+	width:80px;
+	height:25px;
+}
+#buy,#sell,.first-item input,#finish{
+	width:150px;
+	height:25px;
+}
+.select-wrap0{
+	display: inline;
+	width:80px;
+	height:25px;
+	background: url("image/9.7.png") no-repeat right top;
+}
+.select-wrap1{
+	display: inline;
+	width:150px;
+	height:25px;
+	background: url("image/9.7.png") no-repeat right top;
+}
+.first-item select{
+	appearance:none;
+	-webkit-appearance: none;
+    -moz-appearance: none;
+	background-color: transparent;
+}
+
+.second-area{
+	display: flex;
+	justify-content:center;
+	align-items:center;
+}
+.second-col{
+	display: flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+}
+.second-col span{
+	display: inline-block;
+	height:20px;
+	width:20px;
+	text-align: center;
+	background-color: #A9A9A9;
+	color: #fff;
+	position: relative;
+	left: 10px;
+	top:0;
+}
+.forth-area button{
+	width:50px;
+	height:25px;
+	background-color: #3889C0;
+	border-radius: 3px;
+	border-color:#3889C0;
+	color:#fff;
+	font-family:"Microsoft Yahei",Sans-serif;
+}
+/*******second-item*************************************************/
+.second-item{
+	width:1000px;
+	margin:0 auto;
+	display: flex;
+	justify-content:space-between;
+	align-items:center;
+}
+#side{
+	display: inline-block;
+	width:40px;
+	height:80px;
+	display: flex;
+	justify-content:center;
+	align-items:center;
+	font-size: 20px;
+	background-color: #fff;
+	border-left: 1px solid #C6CACD;
+	border-top: 1px solid #C6CACD;
+	color:#B0B0B0;
+	box-sizing:border-box;
+}
+.second-item li{
+	list-style-type: none;
+	display: inline-block;
+	width:124px;
+	height:80px;
+	background-color: #fff;
+	border-left: 1px solid #C6CACD;
+	border-top: 1px solid #C6CACD;
+
+}
+#li-first{
+	border-top:3px solid #228AC1;
+}
+.second-item li p:first-child{
+	margin:10px 22px;
+}
+.second-item li p:last-child{
+	margin:10px 20px;
+	color:#B0B0B0;
+}
+.second-item li span{
+	font-size: 26px;
+	color:#ED6301;
+}
+.second-last{
+	width: 135px;
+	height: 80px;
+	background-color: #fff;
+	border-left: 1px solid #B0B0B0;
+	border-top: 1px solid #B0B0B0;
+	display: flex;
+	justify-content:center;
+	align-items:center;
+}
+.second-last img{
+	vertical-align: middle;
+}
+
+/********third-item**********************************/
+.third-item{
+	height:500px;
+	width:1000px;
+	margin:15px auto;
+}
+
+.accounting{
+	height:100px;
+	display: flex;
+	justify-content:space-between;
+	align-items:center;
+}
+.sta{
+    position: relative;
+    width: 220px;
+    height: 80px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+.sta p{
+    line-height: 20px;
+    margin:10px;
+}
+.sta span{
+    line-height: 20px;
+    font-size: 15px;
+    margin:10px;
+    color: #ccc;
+}
+
+.sta1{
+    border-left:5px solid #42B19E;
+}
+.sta2{
+    border-left:5px solid #398CC2;
+}
+.sta3{
+    border-left:5px solid #CF4B36;
+}
+.sta4{
+    border-left:5px solid #E1CD46;
+}
+
+.sta-r{
+    width: 70px;
+    height: 50px;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: saddlebrown;
+}
+
+.sta1 .sta-r{
+    background:#42B19E;
+}
+.sta2 .sta-r{
+    background:#398CC2;
+}
+.sta3 .sta-r{
+    background:#CF4B36;
+}
+.sta4 .sta-r{
+    background:#E1CD46;
+}
+/***************************/
+.frame{
+	background-color: #fff;
+	float: left;
+	border: 1px solid #ccc;
+    border-radius: 10px;
+}
+.first-group{
+	height:400px;
+	width: 60%;
+	margin-right: 15px;
+}
+.first-group .items-material{
+	padding:10px 30px 30px 30px;
+}
+.first-group .material{
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.first-group li{
+	list-style-type:none; 
+	display: inline-block;
+	width:90px;
+	height:30px;
+	text-align: center;
+	background-color: #EDEDEF;
+	padding-top:5px;
+	border-radius: 3px 3px 0 0;
+	
+}
+.first-group .activing{
+	position: relative;
+	top:2.5px;
+	left:0;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-bottom:0;
+
+}
+.frame-p{
+    margin: 0;
+    padding-left: 20px;
+    font-size: 14px;
+    line-height: 3em;
+    vertical-align: middle;
+    color: #bbb;
+    border-radius:10px 10px 0 0;
+    background-color: #F4F5F7;
+}
+.first-group table{
+	border-collapse: collapse;
+	margin:20px auto;
+	border: 1px solid #ccc;
+	
+}
+.first-group td{
+	padding:10px;
+}
+/*********************************/
+.item-right{
+    height: 400px;
+    width: 38%;
+}
+.item-content{
+    overflow: hidden;
+    width: 70%;
+    height: 40px;
+    margin: 0 auto;
+    font-family: 微软雅黑;
+    padding: 10px 0;
+}
+.item-content span{
+    color: #ccc;
+    line-height: 20px;
+}
+.item-content .in{
+    height: 60px;
+    float: left;
+    width: 35%;
+}
+.in1{
+    height: 60px;
+    float: left;
+    width: 35%;
+    margin: -10px 10px;
+    border-right:1px solid #ccc;
+    padding-top: 10px ;
+}
+.c2{
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.c3{
+    height: 140px;
+}
+
+.item-bottom{
+    position: relative;
+    bottom:0;
+    border-top:1px solid #ccc;
+}
+.item-bottom #check{
+    width: 15px;
+    height: 15px;
+    line-height: 40px;
+    background: #ccc;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+.item-bottom #search{
+    float: right;
+    width: 60px;
+    height: 30px;
+    background: #398AC1;
+    color: #fff;
+    border: 1px solid #398AC1;
+    border-radius: 5px;
+}
+/*********forth-item************************************/
+.forth-item{
+	height:400px;
+	width:1000px;
+	margin:0 auto;
+}
+.table{
+    width: 66%;
+}
+.calendar{
+    width: 30%;
+    margin-right: 15px;
+    min-width: 440px;
+}
+
+.calendar .select{
+    display: flex;
+    padding: 10px 20px;
+
+}
+.select .item{
+    flex: 1 0 auto;
+    margin:0 5px;
+    padding: 3px auto;
+}
+select#month{
+    padding-left: 25px;
+}
+ button.item{
+    background-color: transparent;
+     border: 1px solid rgb(169, 169, 169);
+}
+.calendar table{
+    margin: 0 20px 13px;
+    width: calc(100% - 40px);
+    font: lighter 14px "Microsoft Yahei" ,sans-serif;
+
+}
+.calendar .thead{
+    display: flex;
+    justify-content: center;
+    margin: 0 20px;
+    padding: 10px 0;
+    border-top: 1px solid dodgerblue;
+    border-bottom: 1px solid #D2CFCF;
+}
+.weekhead{
+    flex: 1 0 auto;
+    margin: 0;
+    text-align: center;
+}
+.calendar td{
+    padding: 6px;
+
+}
+.calendar td p{
+    margin: 0;
+    text-align: center;
+    background-color: transparent;
+}
+.festival,.weekend{
+    color: red;
+}
+td.selectday{
+    border:1px solid #ffdc3a;
+}
+
+.carrank{
+    padding-bottom: 10px;
+}
+.carrank table{
+    margin: 10px 40px 8px;
+    border-collapse: collapse;
+    vertical-align: middle;
+}
+.carrank td,.carrank th{
+    border: 1px solid #ccc;
+    padding:5px  20px;
+    text-align: center;
+}
+.carrank th{
+    font-size: 16px;
+    font-weight: 500;
+}
+.carrank tr th:last-child{
+    text-align: left;
+    transform: translateX(-5px);
+}
+meter{
+    width: 200px;
+    height: 5px;
+    margin:auto -20px auto 20px;
+    transform: translateY(-100%);
+}
+meter::-webkit-meter-bar {
+    background: #ccc;
+}
+meter::-webkit-meter-optimum-value {
+    background: linear-gradient(to bottom,#ee5f5b, #bd362f);
+}
+meter::-webkit-meter-suboptimum-value {
+    background: linear-gradient(to bottom, #fbb450, #f89406);
+}
+meter::-webkit-meter-even-less-good-value {
+    background: linear-gradient(to bottom, cornflowerblue,deepskyblue);
+}

@@ -1,0 +1,76 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+body{
+	font-size: 18px;
+	font-family:宋体,微软雅黑;
+}
+li{
+	list-style-type:none; 
+}
+p{
+	line-height:1.5em;
+	text-indent: 2em;
+}
+.out{
+	width:85%;
+	margin:20px auto;
+	background-color: #eee;
+	border:1px solid #999;
+	overflow: auto;
+	padding:20px;
+}
+.content,.left,.right{
+	background-color: white;
+	border:1px solid #999;
+	padding:20px;
+}
+/************************************************************/
+		.main{
+			float:left;
+			width:100%;
+		}
+		.content{/*其margin左右固定，就给左右框留出来了位置，而其宽度为100%，相对于浏览器body变化而变化*/
+			margin:0 180px 0 262px;
+		}
+		.left{/*负margin使其内缩出网页，然后左浮来到最左边。*/
+			float:left;
+			width:200px;
+			margin-left:-100%;
+		}
+		.right{/*leftmargin使得其占据整个上一排，负magin使其扩充了一个right所占据的宽度，左浮使其出现*/
+			float:left;
+			width:120px;
+			margin-left: -162px;
+		}
+/**************************************************************/
+.left span{
+	position: relative;
+	top:-60px;
+	left:20px;
+	font-family: 宋体,微软雅黑;
+	font-size:20px;
+	font-weight: 600;
+
+}
+.one{
+	color: #9D0505;
+	font-weight: 700;
+	font-style: italic;
+}
+.two{
+        float: left;
+        width:160px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        font-size: 32px;
+        font-weight: bold;
+        color: #C6081A;
+}
+.poem{
+	color: #C6BFBF;
+	font-size: 15px;
+	float:right;
+}

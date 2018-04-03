@@ -1,0 +1,65 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+body{
+	font-size: 18px;
+	font-family:宋体,微软雅黑;
+}
+li{
+	list-style-type:none; 
+}
+p{
+	line-height:1.5em;
+	text-indent: 2em;
+}
+.middle span{
+	float:left;
+	width:160px;
+	height:40px;
+	text-align: center;
+	font-size:32px;
+	color:#C6081A;
+	line-height: 40px;
+	font-weight: 600;
+
+}
+.container,.left,.middle,.right{
+	border:1px solid #999;
+	padding:20px;
+	background-color: #fff;
+}
+
+.container{
+	width:85%;
+	margin:20px auto;
+	background-color: #eee;
+	overflow: auto;
+
+}
+.outerWarp{
+	width:100%;
+	float:left;
+	margin-left:-180px;
+}
+.innerWarp{
+	margin-left:180px;
+	overflow:hidden;/*不知道为什么outWarp总会超出去，使得下面出现滚动条，所以加了这一句*/
+}
+.left{
+	width:200px;
+	float:left;
+}
+.contentWarp{
+	width:100%;
+	float:right;
+	margin-right:-260px;
+
+}
+.middle{
+	margin-right:260px;
+}
+.right{
+	float:right;
+	width:120px;
+}
