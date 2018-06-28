@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>北京3D</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <script src="./js/jquery-3.1.1.js"></script>
+    <script src="./js/echarts.js"></script>
+    <script src="./js/d3.v3.min.js"></script>
+
+    <script src="./js/echarts-gl.min.js"></script>
+    <link href="./css/common.css" rel="stylesheet">
+
+    <script src="./js/beijing.js"></script>
+
+    <style type="text/css">
+        #main {
+            width: 100%;
+            border: 2px solid green;
+            height: 500px;
+            background: url('./images/mapBgLight.png') center center no-repeat;
+				background-size: 100% 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="main"></div>
+    <script type="text/javascript">
+        let geoCoordMap = {
+            '东城区': [116.418757, 39.917544],
+            '西城区': [116.366794, 39.915309],
+            '海淀区': [116.24089, 40.037003],
+            '朝阳区': [116.520254, 39.958671],
+            '石景山区': [116.195445, 39.914601],
+            '大兴区': [116.411441, 39.661251],
+            '门头沟区': [115.808583, 40.030278],
+            '昌平区': [116.235906, 40.218085],
+            '通州区': [116.751709, 39.80526],
+            '房山区': [115.845936, 39.744273],
+            '丰台区': [116.271847, 39.857731],
+            '顺义区': [116.741907, 40.164373],
+            '怀柔区': [116.626967, 40.720368],
+            '密云区': [116.987672, 40.542738],
+            '延庆区': [116.189109, 40.559968],
+            '平谷区': [117.164179, 40.237556],
+        };
+        var convertData = function (data) {
+            var res = [];
+            for (var i = 0; i < data.length; i++) {
+                var geoCoord = geoCoordMap[data[i].name];
+                if (geoCoord) {
+                    res.push({
+                        name: data[i].name,
+                        value: geoCoord.concat(data[i].value)
+                    });
+                }
+            }
+            console.log(res)
+            return res;
+        };
+        var city = [
+            { name: '海淀区', value: 90 },
+            { name: '朝阳区', value: 10 },
+            { name: '丰台区', value: 20 },
+            { name: '石景山区', value: 26},
+            { name: '西城区', value: 60 },
+            { name: '东城区', value: 70 },
+            { name: '门头沟区', value: 10},
+            { name: '通州区', value: 23 },
+            { name: '昌平区', value: 20 },
+            { name: '大兴区', value: 22 },
+            { name: '房山区', value: 51 },
+            { name: '顺义区', value: 65 },
+            { name: '平谷区', value: 21 },
+            { name: '密云区', value: 15 },
+            { name: '延庆区', value: 85 },
+            { name: '怀柔区', value: 15 }
+        ]
+        
+        var colors =[], barBig=[];
+        var maxData = 100;
+        var min = 0, max = 100;
+        var boxshadow, col, x, colbar;
+            var originColor = ['rgb(9, 255, 143)', 'rgb(254, 224, 0)', 'rgb(248,100,0)', 'rgb(255, 0, 54)'];
+            
+        city.forEach(function(val,index){
+            colors[index]={};
+            colors[index].name = val.name;
+            colors[index].itemStyle = {};
+            var h = val.value;
+            if (h > 0 && h < Math.floor(maxData / 4) * 1) {
+                x = 0;
+            } else if (h >=Math.floor(maxData / 4) * 1 && h < Math.floor(maxData / 4) * 2) {
+                x = 1;
+            } else if (h >= Math.floor(maxData / 4) * 2 && h < Math.floor(maxData / 4) * 3) {
+                x = 2;
+            } else {
+                x = 3;
+            }
+            colors[index].itemStyle.color = originColor[x];
+
+            barBig[index]={};
+            barBig[index].name = val.name;
+            barBig[index].value = 150;
+        })
+        var chart = echarts.init(document.getElementById('main'));
+        
+        var option = {
+            tooltip: {
+                formatter: function (params) {
+                    var content = '',
+                        content = params.name + params.value[2];
+                    return content;
+                },
+            },
+            // backgroundColor: '#fff',
+            visualMap: {
+                type: 'piecewise', //分段型。
+                splitNumber: 4,
+                show: true,
+                min: min,
+                max: max,
+                // inRange: {
+                //     color: ['rgba(9,255,143,0.6)', 'rgba(254,224,0,1)','rgba(248,100,0,1)','rgba(255,0,54,1)']
+                // },
+                calculable: true,
+                pieces: [{
+                    min: 0,
+                    max: Math.floor(maxData / 4) * 1,
+                    color: 'rgba(9,255,143,1)',
+                    // color: new echarts.graphic.RadialGradient(0.5, 0.5, 1, [{
+                    //     offset: 0,
+                    //     color: 'rgba(9,255,143,0.1)'
+                    // }, {
+                    //     offset: 1,
+                    //     color: 'rgba(9,255,143,1)'
+                    // }]),
+                    label: '良好'
+                }, {
+                    min: Math.floor(maxData / 4) * 1,
+                    max: Math.floor(maxData / 4) * 2,
+                    color: 'rgba(254,224,0,1)',
+                    // color: new echarts.graphic.RadialGradient(0.5, 0.5, 1, [{
+                    //     offset: 0,
+                    //     color: 'rgba(254,224,0,0.1)'
+                    // }, {
+                    //     offset: 1,
+                    //     color: 'rgba(254,224,0,1)'
+                    // }]),
+                    label: '平稳'
+                }, {
+                    min: Math.floor(maxData / 4) * 2,
+                    max: Math.floor(maxData / 4) * 3,
+                    color: 'rgba(248,100,0,1)',
+                    // color: new echarts.graphic.RadialGradient(0.5, 0.5, 1, [{
+                    //     offset: 0,
+                    //     color: 'rgba(248,100,0,0.1)'
+                    // }, {
+                    //     offset: 1,
+                    //     color: 'rgba(248,100,0,1)'
+                    // }]),
+                    label: '警示'
+                }, {
+                    min: Math.floor(maxData / 4) * 3,
+                    max: maxData,
+                    color: 'rgba(255,0,54,1)',
+                    // color: new echarts.graphic.RadialGradient(0.5, 0.5, 1, [{
+                    //     offset: 0,
+                    //     color: 'rgba(255,0,54,0.1)'
+                    // }, {
+                    //     offset: 1,
+                    //     color: 'rgba(255,0,54,1)'
+                    // }]),
+                    label: '警戒'
+                }],
+                left: 'left',
+                top: '10%',
+
+                textStyle: {
+                    color: '#fff'
+                }
+                
+            },
+            geo3D: {
+                map: '北京',
+                roam: true,
+                
+                itemStyle: {
+                    opacity: 1,
+                    borderWidth: 0.4,
+                    borderColor: '#000',
+                }, 
+                
+                label: {
+                    show: true,
+                    textStyle: {
+                        color: '#fff', //地图初始化区域字体颜色
+                        fontSize: 8,
+                        opacity: 1,
+                        backgroundColor: 'rgba(0,23,11,0)'
+                    },
+                },
+                emphasis: { //当鼠标放上去  地区区域是否显示名称
+                    label: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff',
+                            fontSize: 3,
+                            backgroundColor: 'rgba(0,23,11,0)'
+                        }
+                    }
+                },
+                regions: colors,
+                shading: 'lambert',
+                light: { //光照阴影
+                    main: {
+                        color: '#999', //光照颜色
+                        intensity: 1.2, //光照强度
+                        shadowQuality: 'low', //阴影亮度
+                        shadow: false, //是否显示阴影
+                        alpha: 55,
+                        beta: 10
+                    },
+                    ambient: {
+                        intensity: 0.3
+                    }
+                }
+            },
+            
+            series: [
+            {
+                    name: 'bar3D',
+                    type: "bar3D",
+                    coordinateSystem: 'geo3D',
+                    barSize: 2, //柱子粗细
+                    shading: 'lambert',
+                    bevelSize: 0.5,
+                    bevelSmoothness:2,
+                    minHeight:5,
+                    itemStyle:{
+                        // opacity: 0.6,
+                    },
+                    label: {
+                        show: false,
+                        formatter: ''
+                    },
+                    data: convertData(city),
+            }
+            ]
+        }
+        chart.setOption(option);
+        
+        
+        chart.on('click', function (params) {
+            var cout = params.data.name;
+
+            //window.open('https://www.baidu.com');
+            console.log(params);
+        });
+    </script>
+</body>
+
+</html>
