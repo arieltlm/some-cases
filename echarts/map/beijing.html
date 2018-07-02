@@ -2,12 +2,13 @@
 <html lang="zh-cn">
 
 <head>
-    <title>质量大数据可视化平台</title>
+    <title>map</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="height=device-height,width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"
     />
-    <script src="./js/jquery-3.1.1.js"></script>
+    <!-- <script src="./js/jquery-3.1.1.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="./js/echarts.min.js"></script>
     <link href="./css/style.css" rel="stylesheet">
 </head>
@@ -56,7 +57,7 @@
             '大兴区': [116.411441, 39.661251],
             '门头沟区': [115.808583, 40.030278],
             '昌平区': [116.195906, 40.248085],
-            '通州区': [116.751709, 39.80526],
+            '通州区': [116.751709, 39.82526],
             '房山区': [115.845936, 39.744273],
             '丰台区': [116.271847, 39.857731],
             '顺义区': [116.741907, 40.164373],
@@ -133,9 +134,8 @@
                 col = originColor[x], colbar = originbarColor[x];
                 return { boxshadow, col, colbar, boxshadow_after};
             }
-            
-            $(".bars").remove();
 
+             
             var proOption = {
                 title: {},
                 tooltip: {
@@ -146,6 +146,9 @@
                         } else {
                             return params.name + '<br />' + params.value[2];
                         }
+                    },
+                    textStyle: {
+                        fontSize: 18
                     }
                 },
                 toolbox: {
@@ -167,7 +170,8 @@
                             show: true,
                             position: ['50%', '50%'],
                             textStyle: {
-                                color: 'rgba(255,255,255,0.8)'
+                                color: 'rgba(255,255,255,0.8)',
+                                fontSize:16
                             }
                         },
                         emphasis: {
@@ -262,12 +266,13 @@
                             var values = coldCar[params.dataIndex].value[2];
 
                             var bar = $('<div class="bars barw' + params.dataIndex + '"><div class="bar barout' + params.dataIndex + '""></div><div class= "bar_inner barin' + params.dataIndex + '"></div></div>');
+                           
                             $(".provMapBox").prepend(bar)
                             $(".barw" + params.dataIndex).css({
                                 "position": 'absolute',
                                 "height": barHeight,
                                 "left": point1 + 5,
-                                "top": point2 - barHeight - 15 
+                                "top": point2 - barHeight
                             })
                             $(".barout" + params.dataIndex).css({
                                 "boxShadow": getbarColor(coldCar[params.dataIndex].value[2]).boxshadow,
@@ -308,8 +313,16 @@
                     }]
             };
             //渲染地图
+            $(".bars").remove();
             proChart.setOption(proOption);
         });
+        /*窗口自适应*/
+        setTimeout(function () {
+            window.onresize = function () {
+                $(".bars").remove();
+                proChart.resize();
+            }
+        }, 100)
     </script>
 </body>
 
