@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- <script src="../js/d3/d3.min.js"></script> -->
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="data.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: #0a233d;
+        }
+        #chart{
+            width:800px;
+            height:600px;
+        }
+        div.tip-hill-div {
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: Microsoft Yahei;
+        }
+
+        div.tip-hill-div>h1 {
+            font-size: 14px;
+        }
+
+        div.tip-hill-div>h2 {
+            font-size: 12px;
+        }
+        .inner_line path, .inner_line line { fill: none; stroke:#596d82; shape-rendering: crispEdges; }
+       
+    </style>
+</head>
+
+<body>
+    <div id="chart"></div>
+</body>
+
+<script src="d.js"></script>
+</html>
