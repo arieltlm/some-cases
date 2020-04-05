@@ -18,3 +18,8 @@ There  are some of the small cases with HTML and CSS, javaScript, jQuery.
 * d3fromsite:从网上找的两个例子，index.html中是多组平面柱状图，d3test.html中是3d柱状图
 * 3dbar：自己实现的3d多组柱状图，应项目需求
 
+### threejs
+
+> 2019-12-01
+
+一个3d球旋转的效果
